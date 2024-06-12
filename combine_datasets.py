@@ -98,7 +98,7 @@ def combine_datasets(
         data_and_amounts, total=len(data_and_amounts)
     ):
         relative_amount = absolute_amount / total
-        target_test_size = int(test_size * relative_amount * total)
+        target_test_size = int(test_size * min(relative_amount * total, len(dataset)))
 
         if dataset.use_only == USE_ONLY_TRAIN:
             # merge every split into train
@@ -210,6 +210,7 @@ def combine_datasets(
                     for x in batch[out_col]
                 ]
                 return batch
+
             dataset = dataset.map(map_function, **map_kwargs)
 
         if dataset["train"].features[out_col].dtype != "string":
