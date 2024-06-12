@@ -199,7 +199,7 @@ def combine_datasets(
             dataset = dataset.map(map_function, **map_kwargs)
 
         # if is float, format to string rounding to at most 4 decimal places if necessary
-        if dataset["train"].features[out_col].dtype == "float":
+        if dataset["train"].features[out_col].dtype.startswith("float"):
             print(
                 f"Converting column {out_col} from float to string type in dataset {dataset.name}"
             )
