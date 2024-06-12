@@ -1,0 +1,730 @@
+{
+  "reclor": {
+    "variation_count": 5,
+    "variations": [
+      "{context}\n\n{formatted_mc_col}\nPlease answer with just the letter.\n{question}",
+      "Given the context below, answer the following question with the letter only:\n\n{context}\n\n{formatted_mc_col}\n\n{question}",
+      "{context}\n\nFor the question below, respond using only the letter of your choice.\n{question}\n\n{formatted_mc_col}",
+      "{context}\n\nProvide your answer using only the corresponding letter.\n\n{formatted_mc_col}\n\n{question}",
+      "Context:\n{context}\n\nChoose the correct letter only.\n{formatted_mc_col}\n\nQuestion: {question}",
+      "{context}\n\n{question} Answer with the letter only.\n\n{formatted_mc_col}"
+    ],
+    "prompt_template": "{context}\n\n{question} Answer with the letter only.\n\n{formatted_mc_col}"
+  },
+  "asdiv": {
+    "variation_count": 10,
+    "variations": [
+      "Please provide the solution to the math problem. Only include the final result. Problem: {input}",
+      "Give the final answer to the following math problem: {input}",
+      "Find the solution to this math problem and state only the final result. Problem: {input}",
+      "Resolve the mathematical equation and give just the final answer. Problem: {input}",
+      "Determine the answer to the problem below, and respond with the final result only. Problem: {input}",
+      "Work out the math problem and present only the final result. Problem: {input}",
+      "Simply calculate the solution to the math problem and provide only the final result. Problem: {input}",
+      "Solve this math question and respond with just the final answer. Problem: {input}",
+      "Please answer the math problem, providing only the final result. Problem: {input}",
+      "Find the answer to the following math problem and return only the final result. Problem: {input}",
+      "Solve the math problem. Answer with only the final result.\n\nProblem:\n{input}"
+    ],
+    "prompt_template": "Solve the math problem. Answer with only the final result.\n\nProblem:\n{input}"
+  },
+  "strategy-qa": {
+    "variation_count": 10,
+    "variations": [
+      "Provide a response that is only true or false. Facts: {facts} Question: {question}",
+      "Based on the facts given, answer with either true or false: Facts: {facts} Question: {question}",
+      "Reply with only true/false. Here are the facts: {facts} The question is: {question}",
+      "Given the facts, respond with true or false. Facts: {facts} The question is: {question}",
+      "Answer only with true or false. Below are the facts: {facts} Question: {question}",
+      "With the provided facts, please answer with true or false. Facts: {facts} Question: {question}",
+      "Please respond only with true/false based on these facts: {facts} Question: {question}",
+      "Read the following facts and answer with true or false. Facts: {facts} Question: {question}",
+      "Using the facts provided, give an answer that is true or false. Facts: {facts} Question: {question}",
+      "Answer strictly with true or false. Here are the facts: {facts} The question is: {question}",
+      "Answer with only true/false.\n\nFacts:\n{facts}\n\nQuestion:\n{question}"
+    ],
+    "prompt_template": "Answer with only true/false.\n\nFacts:\n{facts}\n\nQuestion:\n{question}"
+  },
+  "count chars in scrambled words": {
+    "variation_count": 10,
+    "variations": [
+      "'{scrambled}' is a word formed by random letters. How many characters long is it? Answer only with a number.",
+      "Determine the number of characters in this scrambled word: '{scrambled}'. Provide just the number.",
+      "Count the characters in the following jumbled word: '{scrambled}'. Please respond with a number only.",
+      "Given the scrambled letters '{scrambled}', how many characters are there? Reply solely with a number.",
+      "Look at the scrambled word '{scrambled}'. How many characters does it contain? Answer with a number only.",
+      "For the word '{scrambled}' composed of mixed-up letters, how many characters does it have? Please answer with only the number.",
+      "Consider the given scrambled word '{scrambled}'. How many characters are in it? Provide only the number.",
+      "How many characters are present in this scrambled sequence: '{scrambled}'? Please respond with just a number.",
+      "If you see the scrambled letters '{scrambled}', how many characters are there in total? Reply with only a number.",
+      "The word made of scrambled letters given here is '{scrambled}'. How many characters does it encompass? Answer with just a number.",
+      "How many characters are in this word of scrambled letters: '{scrambled}'\n Answer with only a number."
+    ],
+    "prompt_template": "How many characters are in this word of scrambled letters: '{scrambled}'\n Answer with only a number."
+  },
+  "count chars in paragraph": {
+    "variation_count": 10,
+    "variations": [
+      "Please provide the total character count for this paragraph. Include all characters like whitespace, newlines, and punctuation. Respond with a single number.\n\nParagraph:\n{text}",
+      "Count all characters in the following paragraph and respond with just the number. Make sure to include spaces, punctuation, and newline characters.\n\nParagraph:\n{text}",
+      "What is the total number of characters in the paragraph below? Include every character, such as whitespace, punctuation, and newlines. Answer with only a number.\n\nParagraph:\n{text}",
+      "Count the total number of characters in this paragraph. Make sure to include whitespaces, punctuation, and newlines. Reply with only the total number.\n\nParagraph:\n{text}",
+      "How many characters are in the provided paragraph? Include all characters (spaces, punctuation, and newlines). Answer solely with a number.\n\nParagraph:\n{text}",
+      "Determine the total character count for the paragraph below. Include every character such as spaces, punctuation, and newlines. Provide only a numerical answer.\n\nParagraph:\n{text}",
+      "Please count the number of characters in the following paragraph. Include all characters like spaces, newlines, and punctuation. Answer with a single number only.\n\nParagraph:\n{text}",
+      "How many total characters are in this paragraph? Make sure to count every character, including whitespaces, punctuation, and newlines. Provide just the numerical answer.\n\nParagraph:\n{text}",
+      "Count every character in the paragraph below, including spaces, punctuation, and newlines. Provide only the total number as your answer.\n\nParagraph:\n{text}",
+      "What is the character count for this paragraph? Include all characters such as whitespace, newlines, and punctuation. Respond with just a number.\n\nParagraph:\n{text}",
+      "How many characters are in this paragraph. Answer with only a number. Count EVERY character, including whitespace, newlines and punctuation.\n\nParagraph:\n{text}"
+    ],
+    "prompt_template": "How many characters are in this paragraph. Answer with only a number. Count EVERY character, including whitespace, newlines and punctuation.\n\nParagraph:\n{text}"
+  },
+  "hotpot qa hard": {
+    "variation_count": 10,
+    "variations": [
+      "With the context provided, answer the question: Context: {relevant_context} Question: {question}",
+      "Use the following context to address the question. Context: {relevant_context} Question: {question}",
+      "Given the context mentioned below, provide an answer to the question. Context: {relevant_context} Question: {question}",
+      "Please answer the question using the given context. Context: {relevant_context} Question: {question}",
+      "Based on the context, respond to the question. Context: {relevant_context} Question: {question}",
+      "Refer to the context to answer the question. Context: {relevant_context} Question: {question}",
+      "With the below context, answer the question: Context: {relevant_context} Question: {question}",
+      "Address the question using the following context: Context: {relevant_context} Question: {question}",
+      "Read the context and then answer the question provided. Context: {relevant_context} Question: {question}",
+      "Considering the context, provide an answer to the question. Context: {relevant_context} Question: {question}",
+      "Answer the question given the context.\n\nContext:\n{relevant_context}\n\nQuestion:\n{question}"
+    ],
+    "prompt_template": "Answer the question given the context.\n\nContext:\n{relevant_context}\n\nQuestion:\n{question}"
+  },
+  "SuperGLUE boolq": {
+    "variation_count": 10,
+    "variations": [
+      "Based on the given passage, answer True or False to the following question.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "Using the information in the passage, determine if the statement is True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "Read the passage below and answer the question. Respond with True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "With reference to the passage provided, state whether the answer to the question is True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "Examine the passage and respond to the question with either True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "Refer to the passage to answer the question as True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "Considering the passage, answer the question with True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "From the provided passage, indicate whether the following statement is True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "Using the passage below, determine the truthfulness of the statement by answering True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "Read the passage and answer the question provided with True or False.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+      "Answer the question with True or False. Use the given passage below.\n\nPassage:\n{passage}\n\nQuestion:\n{question}"
+    ],
+    "prompt_template": "Answer the question with True or False. Use the given passage below.\n\nPassage:\n{passage}\n\nQuestion:\n{question}"
+  },
+  "gsm8k": {
+    "variation_count": 10,
+    "variations": [
+      "Please solve the following math problem. Provide only the numerical result. (no thousand separator)\n\nQuestion:\n{question}",
+      "Answer the math question with only the final number (without thousand separators).\n\nQuestion:\n{question}",
+      "Solve this math problem and give the final result as a single number. (no thousand separators)\n\nQuestion:\n{question}",
+      "Find the solution to the math problem. Write down just the final number. (no thousand separator)\n\nQuestion:\n{question}",
+      "Do the math problem below and present only the final number. (Exclude any thousand separators)\n\nQuestion:\n{question}",
+      "Solve the equation. Your answer should be just the final number (without using thousand separators).\n\nQuestion:\n{question}",
+      "Work out the math question and state only the result in number form. Avoid using thousand separators.\n\nQuestion:\n{question}",
+      "Solve this calculation and give only the numerical answer (no thousand separator).\n\nQuestion:\n{question}",
+      "Complete the math problem and write down only the final numeral answer. (no thousand separators)\n\nQuestion:\n{question}",
+      "Answer the following math question. Provide only the final number as the result. (do not include thousand separators)\n\nQuestion:\n{question}",
+      "Solve the math problem. Answer with only the final result as a number. (no thousand separator)\n\nQuestion:\n{question}"
+    ],
+    "prompt_template": "Solve the math problem. Answer with only the final result as a number. (no thousand separator)\n\nQuestion:\n{question}"
+  },
+  "MathQA": {
+    "variation_count": 10,
+    "variations": [
+      "Choose the correct letter for the right answer to the math problem from the given options below. Problem: {Problem} Options: {options}",
+      "Read the problem below and select the best answer from the listed options. Please respond with the letter of the correct option. Problem: {Problem} Options: {options}",
+      "Find the solution to the math problem and pick the correct answer. Indicate your choice with the corresponding letter. Problem: {Problem} Options: {options}",
+      "Solve the following equation and choose the best option from the list. Respond with the letter that matches your choice. Problem: {Problem} Options: {options}",
+      "Look at the problem, determine the answer, and choose the best option. Provide your response using the appropriate letter. Problem: {Problem} Options: {options}",
+      "Solve this math problem and pick the correct answer from the given options. Reply with the single letter that matches your choice. Problem: {Problem} Options: {options}",
+      "Given the math problem, please choose the best answer from the options provided. Indicate your choice with the appropriate letter. Problem: {Problem} Options: {options}",
+      "Carefully read the problem below and select the best answer from the given options. Answer using the letter corresponding to the correct choice. Problem: {Problem} Options: {options}",
+      "Examine the math problem and pick the best answer from the provided options. Use the corresponding letter to indicate your choice. Problem: {Problem} Options: {options}",
+      "Analyze the following problem and choose the correct answer from the options below. Reply with the letter that represents your choice. Problem: {Problem} Options: {options}",
+      "Solve the math problem. Choose the best answer from the given options. Answer with the single letter corresponding to the correct option.\n\nProblem:\n{Problem}\n\nOptions:\n{options}"
+    ],
+    "prompt_template": "Solve the math problem. Choose the best answer from the given options. Answer with the single letter corresponding to the correct option.\n\nProblem:\n{Problem}\n\nOptions:\n{options}"
+  },
+  "SuperGLUE wic": {
+    "variation_count": 10,
+    "variations": [
+      "Look at the two sentences provided below. Identify the common word between the two sentences and determine whether it has the same meaning in both contexts. Respond with 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Given the following sentences, pinpoint the word that appears in both. Judge if this word carries the same meaning in both sentences. Reply 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Examine the two sentences below. Locate the word that is present in both and evaluate if the word's meaning remains consistent across these sentences. Answer with 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Read the two sentences provided. Find the word that is common to both sentences and decide if its meaning is identical in both. Give your answer as 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Analyze the following sentences and identify the shared word. Determine if this word means the same thing in both sentences. Answer 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Observe the two sentences below. Look for the common word and check if it holds the same meaning in both contexts. Respond with 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Below are two sentences. Identify the word that appears in both and decide if its meaning is consistent across the sentences. Answer 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Consider the two sentences below and find the word that is present in both. Evaluate whether the word means the same thing in each sentence. Answer with 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "You are given two sentences. Identify the word that is common to both. Determine if the word retains the same meaning in both sentences. Answer with 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Read the sentences provided below. Locate the word appearing in both sentences and assess whether its meaning is the same in both contexts. Answer 'True' or 'False'.\n\nSentence 1: {sentence1}\n\nSentence 2: {sentence2}",
+      "Read the two sentences, find the word that appears in both sentences and decide if the word has the same meaning in both sentences. Answer with 'True' or 'False'.\n\nSentence 1:\n{sentence1}\n\nSentence 2:\n{sentence2}"
+    ],
+    "prompt_template": "Read the two sentences, find the word that appears in both sentences and decide if the word has the same meaning in both sentences. Answer with 'True' or 'False'.\n\nSentence 1:\n{sentence1}\n\nSentence 2:\n{sentence2}"
+  },
+  "count words in paragraph": {
+    "variation_count": 10,
+    "variations": [
+      "Count the words in this paragraph. Words are considered as parts separated by spaces and new lines. Provide only the number as your answer.\n\nParagraph:\n{text}",
+      "What is the word count of this paragraph? Words are parts separated by spaces and new lines. Please respond with a number only.\n\nParagraph:\n{text}",
+      "Determine the number of words in the following paragraph. Words are defined as segments split by whitespace and new lines. Answer should be a number.\n\nParagraph:\n{text}",
+      "How many words are there in this paragraph? Define words as segments separated by whitespace and new lines. Respond with just a number.\n\nParagraph:\n{text}",
+      "Please count the words in this paragraph, with words defined as splits by whitespace and new lines. Submit only a number as your answer.\n\nParagraph:\n{text}",
+      "Give the word count for the paragraph below. Consider words as entities divided by spaces and new lines. Provide your answer in number format.\n\nParagraph:\n{text}",
+      "Find the number of words in this paragraph. Define a word as a part split by whitespace and new lines. Answer exclusively with a number.\n\nParagraph:\n{text}",
+      "How many words do you find in this paragraph? Separate words by whitespace and new lines. Only give the number as an answer.\n\nParagraph:\n{text}",
+      "Calculate the number of words in the given paragraph. Words are defined as parts that are split by spaces and new lines. Please respond with a numeric answer.\n\nParagraph:\n{text}",
+      "What is the count of words in this paragraph? Treat words as sections split by whitespace and new lines. Reply with a number only.\n\nParagraph:\n{text}",
+      "How many words are in this paragraph. The number of words is defined as how many parts there are if you split at whitespace and new lines. Answer with only a number.\n\nParagraph:\n{text}"
+    ],
+    "prompt_template": "How many words are in this paragraph. The number of words is defined as how many parts there are if you split at whitespace and new lines. Answer with only a number.\n\nParagraph:\n{text}"
+  },
+  "count chars in english words": {
+    "variation_count": 10,
+    "variations": [
+      "Give the number of characters in '{word}'. Provide just the numeral.",
+      "State the character count of the word '{word}'. Respond with a number.",
+      "What is the count of characters in '{word}'? Reply with only a numerical value.",
+      "How many letters are there in the word '{word}'? Limit your answer to a number.",
+      "The word '{word}' consists of how many characters? Answer in digits only.",
+      "Count the characters in the word '{word}' and give the total as a numerical figure.",
+      "'{word}' has how many characters? Your answer should be a numeral.",
+      "Determine the number of characters in '{word}'. Respond using just a number.",
+      "Identify the character length of the word '{word}' and reply with a sole number.",
+      "How long is the word '{word}' in terms of characters? Provide the count as a number.",
+      "How many characters are in the word '{word}'. Answer with only a number."
+    ],
+    "prompt_template": "How many characters are in the word '{word}'. Answer with only a number."
+  },
+  "SuperGLUE rte": {
+    "variation_count": 10,
+    "variations": [
+      "Given the premise below, is the hypothesis true? Respond with 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Determine whether the hypothesis follows from the premise. Answer 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Assess if the hypothesis can be logically inferred from the premise. Write 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Evaluate the relationship between the following premise and hypothesis. Is it 'entailment' or 'not_entailment'?\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Read the premise and hypothesis and decide if there is entailment. Answer with 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Judge whether the hypothesis is a consequence of the premise. Respond 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Does the premise support the hypothesis? Answer with 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Decide if the hypothesis is a logical deduction from the given premise. Reply 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Examine the premise and hypothesis. Determine if it is 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Is the hypothesis logically supported by the premise? Answer with 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Decide if the hypothesis is entailed by the premise or not. Answer with 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}"
+    ],
+    "prompt_template": "Decide if the hypothesis is entailed by the premise or not. Answer with 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}"
+  },
+  "SuperGLUE record": {
+    "variation_count": 10,
+    "variations": [
+      "Given the passage and the statement below, identify the correct word to fill the @placeholder. Answer with only the word.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Read the following passage and statement. Determine the appropriate word that fills the @placeholder. Provide only the word as your answer.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Examine the passage and the statement provided. Choose the correct word for the @placeholder. Respond with the word only.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Review the passage and the statement below. Select the word that should replace the @placeholder. Give only the word in your answer.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Consider the passage and the statement. Identify the correct word for the @placeholder space. Answer with a single word.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Read the passage below and the statement with the @placeholder. Decide which word fits the placeholder correctly and answer with just the word.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Check the passage and the statement given. Figure out the correct word to fill the @placeholder. Provide only the word in your response.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Analyze the passage and the statement below. Select the word that best completes the @placeholder. Answer with only that word.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Look at the provided passage and statement. Determine the suitable word for the @placeholder. Respond with just the word.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Read the passage followed by the statement containing the @placeholder. Identify the word that correctly fills the placeholder and answer with only one word.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+      "Read the passage and the statement containing a @placeholder. Decide which word fills the placeholder correctly. Answer with only the word.\n\nPassage:\n{passage}\n\nStatement:\n{query}"
+    ],
+    "prompt_template": "Read the passage and the statement containing a @placeholder. Decide which word fills the placeholder correctly. Answer with only the word.\n\nPassage:\n{passage}\n\nStatement:\n{query}"
+  },
+  "SuperGLUE cb": {
+    "variation_count": 10,
+    "variations": [
+      "Based on the premise and hypothesis provided, determine if the hypothesis is entailed by, contradicts, or is neutral to the premise. Use 'entailment', 'contradiction', or 'neutral' as your answer.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Evaluate whether the following hypothesis is entailed by, contradicts, or remains neutral in relation to the given premise. Respond with either 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Please decide if the hypothesis below is supported by the premise, contradicts it, or is neutral. Answer with 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Review the following statements and determine their relationship. Is the hypothesis entailed by the premise, does it contradict the premise, or is it neutral? Use 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Given the premise and hypothesis, decide the relationship between them: entailment, contradiction, or neutral. Please provide your answer accordingly.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Analyze the given premise and hypothesis. Is the hypothesis entailed by the premise, in contradiction to it, or neutral? Indicate your answer with 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Decide whether the hypothesis is supported by, contradicts, or is neutral towards the given premise. Answer with 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Determine the nature of the relationship between the premise and the hypothesis: 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Identify if the given hypothesis is entailed by, contradicts, or is neutral with respect to the premise. Provide your answer as 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Consider the premise and hypothesis below. Specify if the hypothesis entails, contradicts, or is neutral to the premise. State your answer as 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+      "Decide if the hypothesis is entailed by the premise, contradicts the premise, or is neutral to the premise. Answer with 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}"
+    ],
+    "prompt_template": "Decide if the hypothesis is entailed by the premise, contradicts the premise, or is neutral to the premise. Answer with 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}"
+  },
+  "SuperGLUE multirc": {
+    "variation_count": 10,
+    "variations": [
+      "Evaluate whether the given answer option is correct based on the provided paragraph and the question. Respond with 'True' or 'False'. Multiple correct answers might exist beyond those given.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Given the paragraph, question, and answer, determine if the answer is correct according to the text. Write 'True' or 'False'. Note that there might be other correct answers not listed.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Read the following text, question, and answer. Decide if the answer is correct based on the text. Provide your answer as 'True' or 'False'. Be aware that other correct answers may exist beyond those provided.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Analyze the given passage, question, and answer. Judge if the answer is correct within the context of the text and respond with 'True' or 'False'. There could be additional correct answers not shown.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Based on the paragraph, question, and answer provided, determine if the answer is correct. Answer with 'True' or 'False'. Other correct answers might exist that are not given.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Examine the paragraph, question, and answer option. Decide if the answer is a correct option based on the text, understanding that other correct answers may be possible but not given. Answer 'True' or 'False'.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Review the passage, question, and answer option provided. Determine if the given answer is correct according to the text. Your response should be 'True' or 'False'. Note that there might be other correct answers not listed.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Consider the provided paragraph, question, and answer. Decide whether the answer is correct based on the text, using 'True' or 'False' for your response. There could potentially be other correct options that are not given.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Read the paragraph, the question, and the subsequent answer option. Determine if the answer is correct or not based on the text, taking into account that other correct options might exist. Answer 'True' or 'False'.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Based on the provided passage, question, and answer, decide if the answer is accurate according to the text. Write 'True' or 'False'. Remember, there might be other correct answers not included.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+      "Read the paragraph, the question and the answer option. Decide if the answer is a correct option (there could potentially be other correct options that are not given) or not given the text. Answer with 'True' or 'False'.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}"
+    ],
+    "prompt_template": "Read the paragraph, the question and the answer option. Decide if the answer is a correct option (there could potentially be other correct options that are not given) or not given the text. Answer with 'True' or 'False'.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}"
+  },
+  "ARC easy": {
+    "variation_count": 10,
+    "variations": [
+      "From the given options, choose the most appropriate answer and respond with the corresponding letter only. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "Select the best option from the given options and reply with the letter of the correct option only.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Please provide the correct answer by selecting the appropriate letter from the options provided. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "Choose the right answer from the options below and respond with the letter only. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "Answer the question by selecting the best choice and reply with the letter of that option only. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "From the given choices, pick the correct answer and reply using only the letter corresponding to your choice. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "Select the correct option and answer with only the letter of that option. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "Identify the best answer from the given options and respond with the letter of your choice only. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "Answer the question using the best option and reply with only the letter of the correct answer. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "Choose the most accurate option among those provided and respond with just the letter of the chosen option. \n\nQuestion: \n{question} \n\nOptions: \n{formatted_mc_col}",
+      "Answer the question with the best option from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+    ],
+    "prompt_template": "Answer the question with the best option from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+  },
+  "logiqa2": {
+    "variation_count": 10,
+    "variations": [
+      "Carefully review the context and determine the correct answer to the question. Select only the letter corresponding to the correct option.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Examine the context provided and respond to the question by choosing the best option. Answer solely with the letter representing the correct choice.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Based on the context, answer the question by selecting the most appropriate option. Reply with only the letter of the correct option.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Read the following context and answer the question by picking the best answer from the options. Respond with only the letter corresponding to the right choice.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Go through the context and provide an answer to the question by choosing the best of the given options. Write down only the letter of the correct option.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Analyze the provided context and answer the question. Select the best answer from the options and respond with the letter only.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Please read the provided context and answer the subsequent question. Choose the correct answer from the options and respond using only the corresponding letter.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Review the context given and answer the question by picking the best option. Respond with only the letter of the correct answer.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Read the context below and answer the question by selecting the most suitable option. Reply with just the letter of the correct answer.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Consider the context carefully and answer the question provided by choosing the best answer from the list of options. Respond solely with the letter of the correct option.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Read the context and answer the question. Choose the best answer from the given options. Anser with only the letter of the correct option.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+    ],
+    "prompt_template": "Read the context and answer the question. Choose the best answer from the given options. Anser with only the letter of the correct option.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+  },
+  "SuperGLUE copa": {
+    "variation_count": 10,
+    "variations": [
+      "Determine which choice serves as the {question} of the following premise. Respond with either 'choice1' or 'choice2':\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "For the given premise, select the {question}. Reply with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "Given the premise and possible answers, decide which is the {question}. Use 'choice1' or 'choice2' to indicate your answer.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "Choose the {question} in the context of the premise provided. Respond with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "You're given a premise followed by two options. Decide which option is the {question} of the premise. Answer 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "Based on the given premise and the two choices, identify which choice fits as the {question}. Reply with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "Look at the premise and determine the {question} from the two choices. Answer with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "Identify the {question} of the following premise and select between choice1 or choice2.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "Analyze the premise and decide which choice corresponds to the {question}. Your answer should be 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "Given the following scenario, determine which option is the {question}. Respond with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+      "Given the premise and two choices, decide which choice is the {question} of the premise. Answer with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}"
+    ],
+    "prompt_template": "Given the premise and two choices, decide which choice is the {question} of the premise. Answer with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}"
+  },
+  "MATH": {
+    "variation_count": 10,
+    "variations": [
+      "Given the math problem below, find and indicate only the final result. Use a latex expression for fractions, roots, etc. For matrix entries, present them as x/y, and for all other fractions use \\frac{{x}}{{y}}. When dealing with coefficients, omit the multiplication symbol. Variables in expressions should be listed in alphabetical order. For polynomials, write them in decreasing degree order.\n\nProblem:\n{problem}",
+      "Resolve the following math problem and state only the final result. If it involves fractions or roots, use a latex expression. Matrix entries should be shown as x/y, and all other fractions as \\frac{{x}}{{y}}. Avoid using a multiplication symbol for coefficients. Variables in expressions must be in alphabetical order. Present polynomials in decreasing order of degree.\n\nProblem:\n{problem}",
+      "Please solve the math problem below and provide only the final result. For any fractions or roots, use a latex expression. Write matrix entries in x/y format and all other fractions as \\frac{{x}}{{y}}. Do not include multiplication symbols with coefficients. Arrange variables alphabetically, and for polynomials, display them in descending degree order.\n\nProblem:\n{problem}",
+      "Find the solution to the math problem and report only the final result. Use latex for fractions, roots, etc. Express matrix entries as x/y and all other fractions with \\frac{{x}}{{y}}. Exclude multiplication symbols with coefficients. List variables in alphabetical order. For polynomials, use decreasing degree order.\n\nProblem:\n{problem}",
+      "Solve the following math problem and provide only the final result. Use latex expressions for fractions, roots, etc. Matrix entries should be in x/y format, while other fractions should be in \\frac{{x}}{{y}} format. Coefficients should not have a multiplication symbol. Arrange variables alphabetically. Write polynomials in decreasing degree order.\n\nProblem:\n{problem}",
+      "Please resolve the math problem and answer with only the final result. Use latex expressions if there are fractions, roots, etc. Show matrix entries as x/y and other fractions as \\frac{{x}}{{y}}. Do not include multiplication symbols for coefficients. Order variables alphabetically. For polynomials, present them in decreasing order of degree.\n\nProblem:\n{problem}",
+      "Determine the answer to the math problem provided, giving only the final result. If applicable, use latex expressions for fractions and roots. Matrix entries should be written as x/y, and all other fractions as \\frac{{x}}{{y}}. Coefficients should not feature a multiplication symbol. List variables alphabetically and express polynomials in decreasing degree order.\n\nProblem:\n{problem}",
+      "Solve the problem below and provide only the final result using a latex expression for fractions, roots, etc. Matrix entries should be in x/y format and all other fractions as \\frac{{x}}{{y}}. Exclude multiplication symbols for coefficients. Variables should be ordered alphabetically. For polynomials, list terms in decreasing degree order.\n\nProblem:\n{problem}",
+      "Please solve the following math problem and give only the final result, using a latex expression for fractions or roots. Matrix entries should be expressed as x/y and any other fractions as \\frac{{x}}{{y}}. Avoid a multiplication symbol for coefficients. Variables should appear in alphabetical order. Present polynomials in descending degree order.\n\nProblem:\n{problem}",
+      "Solve the math problem below and answer only with the final result. Use latex expressions for fractions and roots when necessary. Write matrix entries in x/y format and all other fractions as \\frac{{x}}{{y}}. Do not use a multiplication symbol with coefficients. For expressions containing variables, they should appear alphabetically. Polynomials should be displayed in decreasing order of degree.\n\nProblem:\n{problem}",
+      "Solve the math problem. Answer with only the final result. Use a latex expression, if the result is a fraction, includes a root, etc. Write matrix entries as x/y and all other fractions as \\frac{{x}}{{y}}. For coefficients, do not include a multiplication symbol. For expressions with multiple variables, order the variables alphabetically. For polynomials, express them in decreasing degree order. \n\nProblem:\n{problem}"
+    ],
+    "prompt_template": "Solve the math problem. Answer with only the final result. Use a latex expression, if the result is a fraction, includes a root, etc. Write matrix entries as x/y and all other fractions as \\frac{{x}}{{y}}. For coefficients, do not include a multiplication symbol. For expressions with multiple variables, order the variables alphabetically. For polynomials, express them in decreasing degree order. \n\nProblem:\n{problem}"
+  },
+  "drop single number": {
+    "variation_count": 10,
+    "variations": [
+      "Read the passage and respond with the final answer solely as a numeric value. Passage: {passage} Question: {question}",
+      "Review the passage below and provide the answer to the question in numerical form only. Passage: {passage} Question: {question}",
+      "Please read the passage carefully and answer the question using only a number. Passage: {passage} Question: {question}",
+      "Given the passage, determine the answer and reply with just the final number. Passage: {passage} Question: {question}",
+      "After reading the passage, answer the question with a number. Passage: {passage} Question: {question}",
+      "Read the passage and provide the final answer as a number only. Passage: {passage} Question: {question}",
+      "Read through the passage and give the answer to the question using only the final numeric value. Passage: {passage} Question: {question}",
+      "Please read the following passage and answer the subsequent question with a number. Passage: {passage} Question: {question}",
+      "Examine the passage and respond with only the final number. Passage: {passage} Question: {question}",
+      "Consult the passage and answer the question, ensuring your response is a single number. Passage: {passage} Question: {question}",
+      "Read the passage and answer the question. Answer with only the final answer as a number.\n\nPassage:\n{passage}\n\nQuestion:\n{question}"
+    ],
+    "prompt_template": "Read the passage and answer the question. Answer with only the final answer as a number.\n\nPassage:\n{passage}\n\nQuestion:\n{question}"
+  },
+  "AquaRat": {
+    "variation_count": 10,
+    "variations": [
+      "Solve the following math problem and select the best option. Answer with the letter of the correct choice.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Select the correct answer for the math problem below. Respond only with the letter corresponding to the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Choose the correct answer for the math problem provided. Provide just the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Pick the right answer from the options listed. Answer with the letter of the correct choice only.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Find the correct solution for the math problem and choose the best answer. Respond with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Read the math problem and select the best answer from the provided options. Provide only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Determine the best answer for the following math problem. Answer with only the letter corresponding to the correct choice.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Solve the math question below and choose the correct option. Answer by providing the letter of the correct choice.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Review the math problem and select the most accurate option. Respond with the letter of the correct answer only.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Analyze the math problem and choose the right answer. Provide your response as the letter of the correct option only.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Solve the math problem. Choose the best answer from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+    ],
+    "prompt_template": "Solve the math problem. Choose the best answer from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+  },
+  "LSAT-LR": {
+    "variation_count": 5,
+    "variations": [
+      "{context}\n\n{question}\n\n{formatted_mc_col}\n\nPlease provide the letter of the correct answer only.",
+      "With the following context, answer the question by selecting the correct letter only:\n\n{context}\n\n{formatted_mc_col}\n\n{question}",
+      "{context}\n\n{question}\n\n{formatted_mc_col}\n\nChoose the correct answer and respond only with the corresponding letter.",
+      "Based on the below context, reply to the question with the correct letter.\n\n{context}\n\n{question}\n\n{formatted_mc_col}",
+      "{context}\n\nPlease respond to the question with the appropriate letter.\n\n{question}\n\n{formatted_mc_col}",
+      "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ],
+    "prompt_template": "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+  },
+  "coin flip": {
+    "variation_count": 5,
+    "variations": [
+      "Provide a response with either yes or no.\n\n{inputs}",
+      "Respond by choosing either yes or no.\n\n{inputs}",
+      "Please answer with a yes or no.\n\n{inputs}",
+      "Your reply should be yes or no.\n\n{inputs}",
+      "{inputs}\n\nAnswer with either a yes or no.",
+      "Answer with yes or no.\n\n{inputs}"
+    ],
+    "prompt_template": "Answer with yes or no.\n\n{inputs}"
+  },
+  "MMLU-Pro": {
+    "variation_count": 5,
+    "variations": [
+      "Please respond with the letter only. {question}\n\n{formatted_mc_col}",
+      "{question}\n\n{formatted_mc_col}\n\nReply with just the letter.",
+      "{question}\n\n{formatted_mc_col}\n\nYour answer should be a single letter.",
+      "{question}\n\n{formatted_mc_col}\n\nIndicate your choice by typing the letter only.",
+      "{question}\n\n{formatted_mc_col}\nPlease provide your answer as one letter only.",
+      "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ],
+    "prompt_template": "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+  },
+  "gpqa main": {
+    "variation_count": 5,
+    "variations": [
+      "Please provide the answer to the following question by choosing the correct letter only:\n\n{Question}\n\n{formatted_mc_col}",
+      "Choose the correct option for the given question, and respond with the letter only:\n\n{Question}\n\n{formatted_mc_col}",
+      "Select the right answer from the options below and reply with the corresponding letter:\n\n{Question}\n\n{formatted_mc_col}",
+      "For the question provided, pick the correct lettered option:\n\n{Question}\n\n{formatted_mc_col}\n\nRespond with the letter only.",
+      "Answer the following question and choose the correct option by its letter only:\n\n{Question}\n\n{formatted_mc_col}",
+      "{Question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ],
+    "prompt_template": "{Question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+  },
+  "crosswords": {
+    "variation_count": 10,
+    "variations": [
+      "Solve this crossword clue:\nClue: {clue}\nPublished in: {year}\nWord length: {length}\nFirst hint: {hint}\nSecond hint: {hint2}\nRespond with the appropriate word in ALL CAPS.",
+      "Here's a crossword puzzle clue for you:\nClue: {clue}\nYear: {year}\nWord's length: {length}\nHint 1: {hint}\nHint 2: {hint2}\nType out the word in uppercase letters.",
+      "Can you figure out this crossword clue?\nClue: {clue}\nPublication Year: {year}\nWord Length: {length}\nFirst Hint: {hint}\nSecond Hint: {hint2}\nReply with the complete word in ALL CAPS.",
+      "Crossword Clue:\nClue: {clue}\nYear: {year}\nLength: {length}\nHint: {hint}\nAdditional Hint: {hint2}\nPlease answer in uppercase letters only.",
+      "Challenge yourself with this crossword clue:\nClue given: {clue}\nYear published: {year}\nLength of answer: {length}\nPrimary hint: {hint}\nSecondary hint: {hint2}\nProvide the answer in all caps.",
+      "Here is a crossword puzzle clue for you to solve:\nCrossword Clue: {clue}\nYear of publication: {year}\nThe length of the word: {length}\nHint 1: {hint}\nHint 2: {hint2}\nKindly respond with the word in ALL UPPERCASE.",
+      "Please solve this crossword clue:\nGiven Clue: {clue}\nPublished in the year: {year}\nWord Length: {length}\nFirst hint given: {hint}\nSecond hint provided: {hint2}\nYour answer should be in ALL CAPS.",
+      "Put your skills to the test with this crossword hint:\nClue: {clue}\nPublished Year: {year}\nAnswer Length: {length}\nHint One: {hint}\nHint Two: {hint2}\nRespond with the word exactly in UPPERCASE.",
+      "Attempt to solve this crossword puzzle:\nClue Description: {clue}\nPublication Date: {year}\nLength of the term: {length}\nFirst clue: {hint}\nSecond clue: {hint2}\nEnsure to respond using all uppercase letters.",
+      "Let's see if you can solve this crossword clue:\nClue: {clue}\nYear it was published: {year}\nLength of word: {length}\nHint 1: {hint}\nHint 2: {hint2}\nAnswer must be in ALL CAPITAL LETTERS.",
+      "This is a crossword clue:\nClue: {clue}\nYear of publication: {year}\nLength of the word: {length}\nHint 1: {hint}\nHint 2: {hint2}\n\nAnswer with the word that fits the clue. All UPPERCASE."
+    ],
+    "prompt_template": "This is a crossword clue:\nClue: {clue}\nYear of publication: {year}\nLength of the word: {length}\nHint 1: {hint}\nHint 2: {hint2}\n\nAnswer with the word that fits the clue. All UPPERCASE."
+  },
+  "reversal curse": {
+    "variation_count": 5,
+    "variations": [
+      "'{question}\n Provide only the name as the answer'",
+      "'{question}\n Respond solely with the name'",
+      "'{question}\n Answer exclusively with the name'",
+      "'Please provide just the name for the following question:\n{question}'",
+      "'{question}\n Your reply should only include the name'",
+      "{question}\n Answer with only the name"
+    ],
+    "prompt_template": "{question}\n Answer with only the name"
+  },
+  "com2sense": {
+    "variation_count": 10,
+    "variations": [
+      "Does the statement below seem accurate, logical, or sensible?\n{sent}\nRespond with True or False.",
+      "Please determine if the following statement is correct, logical, or makes sense:\n{sent}\nAnswer with True or False.",
+      "Evaluate the accuracy, logic, or sensibility of the following sentence:\n{sent}\nRespond with True or False.",
+      "Is the message below valid, rational, or coherent?\n{sent}\nPlease reply True or False.",
+      "Assess whether the statement below is correct, logical, or makes sense:\n{sent}\nAnswer with True or False.",
+      "Check if the following is correct, logical, or makes sense:\n{sent}\nReply True or False.",
+      "Can you confirm if the statement below is accurate, logical, or sensible?\n{sent}\nRespond with True or False.",
+      "Decide if the following statement is correct, logical, or makes sense:\n{sent}\nAnswer with True or False.",
+      "Is the following sentence correct, logical, or sensible?\n{sent}\nAnswer True or False.",
+      "Please determine if the following is accurate, logical, or makes coherent sense:\n{sent}\nRespond True or False.",
+      "Is the following correct, logical or makes sense?\n{sent}\n\nAnswer with True or False."
+    ],
+    "prompt_template": "Is the following correct, logical or makes sense?\n{sent}\n\nAnswer with True or False."
+  },
+  "jeopardy": {
+    "variation_count": 10,
+    "variations": [
+      "Here's a quiz question for you:\nCategory: {category}\nQuestion: {question}\nPlease give an answer with {num_words} words.\nInclude an article if needed. Use '&' for 'and' when listing two items.",
+      "You have a quiz question to answer:\nCategory: {category}\nQuestion: {question}\nThe answer should be {num_words} words long.\nRemember to include articles where appropriate. Use '&' instead of 'and' if two items are mentioned.",
+      "Quiz Time!\nCategory: {category}\nQuestion: {question}\nProvide an answer of {num_words} words.\nInclude an article if it's needed. Use '&' rather than 'and' when naming two things.",
+      "Here's a question for you from a quiz:\nCategory: {category}\nQuestion: {question}\nYour answer should have {num_words} words.\nMake sure to include any necessary articles. When listing two items, use '&' instead of 'and'.",
+      "Answer this quiz question:\nCategory: {category}\nQuestion: {question}\nThe answer must be {num_words} words long.\nInclude articles if needed. Use '&' in place of 'and' for two items.",
+      "Quiz question incoming:\nCategory: {category}\nQuestion: {question}\nYour answer should have exactly {num_words} words.\nDon't forget to include articles. When referring to two things, use '&' instead of 'and'.",
+      "Let's see if you can answer this quiz question:\nCategory: {category}\nQuestion: {question}\nThe answer should consist of {num_words} words.\nInclude articles when appropriate. Use '&' not 'and' for listing two things.",
+      "Challenge yourself with this quiz question:\nCategory: {category}\nQuestion: {question}\nThe answer needs to be {num_words} words.\nInclude articles where necessary. If the question asks for two things, use '&' instead of 'and'.",
+      "We have a quiz question for you:\nCategory: {category}\nQuestion: {question}\nYour response should be {num_words} words.\nIncorporate articles if needed, and when asked for two items, use '&' instead of 'and'.",
+      "Can you answer this quiz question?\nCategory: {category}\nQuestion: {question}\nYour answer should contain {num_words} words.\nInclude articles if they are required. Use '&' instead of 'and' when mentioning two things.",
+      "This is a question from a Quiz:\nCategory: {category}\nQuestion: {question}\nNumber of words in answer: {num_words}\n\nAnswer with the correct word or phrase. Often an article is included in the answer. When asked for two things, use '&' instead of 'and'."
+    ],
+    "prompt_template": "This is a question from a Quiz:\nCategory: {category}\nQuestion: {question}\nNumber of words in answer: {num_words}\n\nAnswer with the correct word or phrase. Often an article is included in the answer. When asked for two things, use '&' instead of 'and'."
+  },
+  "svamp": {
+    "variation_count": 10,
+    "variations": [
+      "Provide only one numerical answer.\n\nQuestion:\n{question_concat}",
+      "Respond with a single numeric value.\n\nQuestion:\n{question_concat}",
+      "Just give the answer in number form.\n\nQuestion:\n{question_concat}",
+      "Please answer with a number.\n\nQuestion:\n{question_concat}",
+      "Give only one number as your response.\n\nQuestion:\n{question_concat}",
+      "One-number answer required.\n\nQuestion:\n{question_concat}",
+      "Respond using a single digit or number.\n\nQuestion:\n{question_concat}",
+      "Answer in numeric format only.\n\nQuestion:\n{question_concat}",
+      "The answer should be a single number.\n\nQuestion:\n{question_concat}",
+      "Your response should be in numerical form only.\n\nQuestion:\n{question_concat}",
+      "Answer with a single number.\n\nQuestion:\n{question_concat}"
+    ],
+    "prompt_template": "Answer with a single number.\n\nQuestion:\n{question_concat}"
+  },
+  "hellaswag": {
+    "variation_count": 10,
+    "prompt_template": "What ending fits best?\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+    "variations": [
+      "Which conclusion suits this best?\n{question}\n\n{formatted_mc_col}\n\nReply with the corresponding letter only.",
+      "Choose the best ending:\n{question}\n\n{formatted_mc_col}\n\nOnly type the letter of your answer.",
+      "Pick the most suitable ending:\n\n{question}\n\n{formatted_mc_col}\n\nPlease answer by providing just the letter.",
+      "Select the most appropriate ending:\n{question}\n\n{formatted_mc_col}\n\nRespond with the letter only.",
+      "Identify the best conclusion:\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with only the corresponding letter.",
+      "What fits best as the ending?\n{question}\n\n{formatted_mc_col}\n\nPlease reply with the letter only.",
+      "Determine the best ending:\n{question}\n\n{formatted_mc_col}\n\nWrite down the letter only as your answer.",
+      "What should be the ending?\n\n{question}\n\n{formatted_mc_col}\n\nRespond with just the letter.",
+      "Which ending would be the best fit?\n{question}\n\n{formatted_mc_col}\n\nAnswer using the corresponding letter only.",
+      "Please choose the most fitting conclusion:\n{question}\n\n{formatted_mc_col}\n\nReply by typing the letter only.",
+      "What ending fits best?\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ]
+  },
+  "codah": {
+    "variation_count": 10,
+    "variations": [
+      "Choose the most probable ending for the sentence:\n{question_propmt}\n\n{formatted_mc_col}\n\nRespond with the appropriate letter.",
+      "Select the option that best completes the sentence?\n{question_propmt}\n\n{formatted_mc_col}\n\nProvide only the corresponding letter.",
+      "What is the likeliest way to finish this sentence?\n{question_propmt}\n\n{formatted_mc_col}\n\nAnswer with a single letter.",
+      "Identify the most plausible conclusion of the sentence:\n{question_propmt}\n\n{formatted_mc_col}\n\nReply using the letter only.",
+      "Determine the best ending for the following sentence?\n{question_propmt}\n\n{formatted_mc_col}\n\nType just the letter.",
+      "Which option best completes the sentence?\n{question_propmt}\n\n{formatted_mc_col}\n\nYour answer should be a single letter.",
+      "Find the most appropriate ending for this sentence:\n{question_propmt}\n\n{formatted_mc_col}\n\nRespond using only the letter.",
+      "Choose the best possible conclusion for the sentence:\n{question_propmt}\n\n{formatted_mc_col}\n\nProvide just the letter.",
+      "Select the letter that represents the best completion of the sentence.\n{question_propmt}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+      "What completes the sentence in the most logical way?\n{question_propmt}\n\n{formatted_mc_col}\n\nAnswer with the corresponding letter.",
+      "What is the most likely completion of the sentence?\n{question_propmt}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ],
+    "prompt_template": "What is the most likely completion of the sentence?\n{question_propmt}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+  },
+  "SAT Analogies": {
+    "variation_count": 5,
+    "variations": [
+      "Select the most fitting option only by its corresponding letter. \n\n{question}\n\nChoices:\n\n{formatted_mc_col}\n\nReply with the letter only.",
+      "Pick the best answer by choosing the correct letter. \n\n{question}\n\nOptions:\n\n{formatted_mc_col}\n\nRespond using the letter only.",
+      "Please choose the correct option and provide the corresponding letter only. \n\n{question}\n\nHere are your choices:\n\n{formatted_mc_col}",
+      "Decide the best answer and write down just its letter. \n\n{question}\n\nAvailable choices:\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+      "Select the most appropriate option and answer with its letter. \n\n{question}\n\nOptions to choose from:\n\n{formatted_mc_col}",
+      "Choose the best option.\n{question}\nlike\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ],
+    "prompt_template": "Choose the best option.\n{question}\nlike\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+  },
+  "RACE high school": {
+    "variation_count": 10,
+    "variations": [
+      "Based on the article provided, select the letter corresponding to the best answer from the options below.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Read the article and choose the correct answer from the given options. Provide only the letter of the correct option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "From the options listed, select the best answer to the question after reading the article. Respond with the letter of the chosen option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Carefully review the article and answer the question by selecting the best option. Indicate your choice by the letter of the correct option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Consider the article and choose the most appropriate answer from the options. Reply with the letter of the chosen option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Review the provided article and answer the question by selecting the best option. Indicate your selection with the letter of the correct option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "After reading the article, decide which option best answers the question and respond with the letter of the correct choice.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Assess the article and choose the most fitting answer from the provided options. Answer using the letter of your selected option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Use the article to determine the correct answer to the question. Provide your answer by indicating the letter of the correct option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Given the article, pick the best answer to the question from the choices below. Indicate your answer with the letter of the chosen option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Choose the best answer from the given options to answer the question based on the article. Answer with the letter of the correct option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+    ],
+    "prompt_template": "Choose the best answer from the given options to answer the question based on the article. Answer with the letter of the correct option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+  },
+  "winogrande": {
+    "variation_count": 10,
+    "variations": [
+      "Choose the most appropriate word to complete the sentence: \n {sentence} \n {formatted_mc_col} \n Provide only the letter of your answer.",
+      "Select the best option to fill in the blank: \n {sentence} \n {formatted_mc_col} \n Reply with the corresponding letter.",
+      "Identify the correct option to complete the sentence: \n {sentence} \n {formatted_mc_col} \n Please respond with the letter only.",
+      "Determine the best choice to complete the sentence: \n {sentence} \n {formatted_mc_col} \n Answer using just the letter.",
+      "Pick the optimal word to complete the phrase: \n {sentence} \n {formatted_mc_col} \n Provide your answer using the letter only.",
+      "Choose the correct option to fill in the blank: \n {sentence} \n {formatted_mc_col} \n Respond with the letter only.",
+      "Fill the blank with the best word: \n {sentence} \n {formatted_mc_col} \n Answer by selecting the letter only.",
+      "Select the appropriate term to complete the sentence: \n {sentence} \n {formatted_mc_col} \n Reply with the corresponding letter.",
+      "Find the best option to complete the following sentence: \n {sentence} \n {formatted_mc_col} \n Provide your answer with just the letter.",
+      "Fill in the blank with the most suitable option: \n {sentence} \n {formatted_mc_col} \n Answer only with the letter.",
+      "Fill the placeholder with the best option:\n{sentence}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ],
+    "prompt_template": "Fill the placeholder with the best option:\n{sentence}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+  },
+  "reverse words": {
+    "variation_count": 10,
+    "variations": [
+      "Flip '{word}' around.",
+      "Can you reverse the word '{word}'?",
+      "Turn the word '{word}' backwards.",
+      "Show the word '{word}' in reverse.",
+      "Reverse the letters in '{word}'.",
+      "Invert the spelling of '{word}'.",
+      "Write '{word}' backwards.",
+      "How does '{word}' look reversed?",
+      "Transform '{word}' by reversing it.",
+      "Spell '{word}' in reverse order.",
+      "Reverse the word '{word}'."
+    ],
+    "prompt_template": "Reverse the word '{word}'."
+  },
+  "ape210k": {
+    "variation_count": 10,
+    "prompt_template": "{question}\n\nAnswer with a number. No thousands separator, round to 4 decimal places if necessary.",
+    "variations": [
+      "{question}\n\nProvide the answer as a number. No commas, rounded to 4 decimal places if required.",
+      "{question}\n\nRespond with a numerical value, rounded to 4 decimals if needed, without a thousands separator.",
+      "{question}\n\nAnswer should be a number, with no commas and rounded to 4 decimal places if applicable.",
+      "Please answer the following question: {question}\n\nYour response should be a number, rounded to 4 decimal places when necessary, and without a thousands separator.",
+      "{question}\n\nGive your response as a number. Use 4 decimal places if rounding is necessary, and avoid using commas.",
+      "{question}\n\nPlease provide the answer as a numeric value. Do not include a thousands separator and round to 4 decimal places if needed.",
+      "{question}\n\nThe answer should be a number, rounded to 4 decimal places if needed, and should not contain any commas.",
+      "{question}\n\nReply with a numerical answer. Ensure it is rounded to 4 decimal places if necessary and does not include a thousands separator.",
+      "For the following question: {question}\n\nAnswer in numerical form, rounding to 4 decimal places if required, with no commas.",
+      "{question}\n\nSubmit the answer as a number, rounding to 4 decimal points if required, and make sure not to use a thousands separator.",
+      "{question}\n\nAnswer with a number. No thousands separator, round to 4 decimal places if necessary."
+    ]
+  },
+  "ARC challenge": {
+    "variation_count": 10,
+    "prompt_template": "Answer the question with the best option from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+    "variations": [
+      "Select the best option from the choices provided and answer with only the letter of that option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Please choose the correct option and respond only with its letter.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "From the given options, answer the question by replying with the corresponding letter.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Answer with the letter of the best option from the provided choices.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Choose the best answer from the options and respond just with the letter.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Determine the best option and answer with only the corresponding letter.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Using the options given, choose the correct one and respond with its letter only.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Identify the best option and answer solely with its letter.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Select the right option from the list and provide your answer in the form of its letter.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "From the options listed, choose the correct answer and reply with just the letter.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+      "Answer the question with the best option from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}"
+    ]
+  },
+  "LSAT-AR": {
+    "variation_count": 10,
+    "prompt_template": "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+    "variations": [
+      "'{context}\n\n{question}\n\n{formatted_mc_col}\n\nProvide only the letter of your answer.'",
+      "'Here's the context:{context}\n\nQuestion:\n{question}\n\nChoices:\n{formatted_mc_col}\n\nJust indicate your letter choice.'",
+      "'{context}\n\n{question}\n\nPlease choose from the following options by mentioning only the letter:\n\n{formatted_mc_col}'",
+      "'Context:\n{context}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}\n\nSubmit your response with the corresponding letter only.'",
+      "'Review the context:\n{context}\n\nAnswer the following question:\n\n{question}\n\nOptions provided:\n{formatted_mc_col}\n\nReply with the letter only.'",
+      "'{context}\n\n{question}\n\n{formatted_mc_col}\n\nOnly the letter of your selected answer is needed.'",
+      "'Take a look at the context below:\n{context}\n\nQuestion:\n{question}\n\nSelect your answer from the options provided:\n{formatted_mc_col}\n\nSubmit just the letter of your choice.'",
+      "'Given the context:\n{context}\n\nPlease answer the question:\n\n{question}\n\nChoose from these options:\n{formatted_mc_col}\n\nRespond with the letter only.'",
+      "'{context}\n\n{question}\n\n{formatted_mc_col}\n\nPlease reply with the letter that corresponds to your answer.'",
+      "'Here's the scenario:\n{context}\n\nWhat do you think is the right answer?\n\n{question}\n\nOptions:\n{formatted_mc_col}\n\nAnswer using the letter only.'",
+      "'{context}\n\n{question}\n\nOptions are:\n{formatted_mc_col}\n\nReply with just the letter of your answer.'",
+      "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ]
+  },
+  "riddle sense": {
+    "variation_count": 5,
+    "prompt_template": "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+    "variations": [
+      "{question}\n\n{formatted_mc_col}\n\nProvide your answer using the letter only.",
+      "{question}\n\n{formatted_mc_col}\n\nRespond with just the corresponding letter.",
+      "Please answer the following question with the letter only:\n\n{question}\n\n{formatted_mc_col}",
+      "Answer with the letter only.\n\n{question}\n\n{formatted_mc_col}",
+      "{question}\n\n{formatted_mc_col}\n\nJust give the letter for your answer.",
+      "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ]
+  },
+  "LSAT-RC": {
+    "variation_count": 5,
+    "prompt_template": "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+    "variations": [
+      "Here is the context: {context}\n\nQuestion: {question}\n\nOptions:\n{formatted_mc_col}\n\nPlease respond with the appropriate letter only.",
+      "{context}\n\n{question}\n\nChoices:\n{formatted_mc_col}\n\nSelect the correct letter as your answer.",
+      "Consider the following context:\n{context}\n\nNow, answer the question below using the choices provided:\n{question}\n\n{formatted_mc_col}\n\nWrite down the letter of your answer.",
+      "Read the context provided:\n{context}\n\nNow answer the following question:\n{question}\n\nOptions are:\n{formatted_mc_col}\n\nOnly include the letter of your answer.",
+      "Provided context: {context}\n\nGiven question: {question}\n\nAvailable choices:\n{formatted_mc_col}\n\nIndicate your answer using just the corresponding letter.",
+      "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ]
+  },
+  "truthful qa": {
+    "variation_count": 5,
+    "prompt_template": "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+    "variations": [
+      "{question}\n\n{formatted_mc_col}\n\nJust provide the letter of your answer.",
+      "{question}\n\n{formatted_mc_col}\n\nRespond with the correct letter only.",
+      "Question: {question}\n\nOptions:\n{formatted_mc_col}\n\nState your answer by selecting the corresponding letter.",
+      "{question}\n\n{formatted_mc_col}\n\nPlease reply with only the letter of your choice.",
+      "{question}\n\n{formatted_mc_col}\n\nGive your response by indicating just the letter.",
+      "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ]
+  },
+  "SuperGLUE WSC": {
+    "variation_count": 10,
+    "prompt_template": "{text}\n\nIn the text above, does '{span2_text}' (word number {span2_index}) refer to '{span1_text}'?\n\nAnswer with 'True' or 'False'.",
+    "variations": [
+      "'{text}\n\nDoes the term '{span2_text}' (found at word number {span2_index}) in the text above refer to '{span1_text}'?\nPlease respond with 'True' or 'False'.",
+      "'{text}\n\nIn the above passage, is '{span2_text}' (word number {span2_index}) a reference to '{span1_text}'?\nAnswer 'True' or 'False'.",
+      "'{text}\n\nDoes '{span2_text}' (located at word number {span2_index}) in the provided text refer to '{span1_text}'?\nRespond with 'True' or 'False'.",
+      "'{text}\n\nIs '{span2_text}' (occurring at word number {span2_index}) in the aforementioned text pointing to '{span1_text}'?\nAnswer with 'True' or 'False'.",
+      "'{text}\n\nIn the text above, does the term '{span2_text}' (positioned at word number {span2_index}) refer to '{span1_text}'?\nPlease reply with 'True' or 'False'.",
+      "'{text}\n\nIs the term '{span2_text}' (which is word number {span2_index}) in the text above a reference to '{span1_text}'?\nAnswer 'True' or 'False'.",
+      "'{text}\n\nDoes the word '{span2_text}' (word number {span2_index}) in the given text refer to '{span1_text}'?\nRespond with 'True' or 'False'.",
+      "'{text}\n\nWithin the provided text, does '{span2_text}' (word number {span2_index}) pertain to '{span1_text}'?\nAnswer 'True' or 'False'.",
+      "'{text}\n\nIn the text above, is the term '{span2_text}' (at word number {span2_index}) referring to '{span1_text}'?\nPlease answer 'True' or 'False'.",
+      "'{text}\n\nDoes '{span2_text}' (found at word number {span2_index} in the above text) refer to '{span1_text}'?\nKindly respond with 'True' or 'False'.",
+      "{text}\n\nIn the text above, does '{span2_text}' (word number {span2_index}) refer to '{span1_text}'?\n\nAnswer with 'True' or 'False'."
+    ]
+  },
+  "gpqa diamond": {
+    "variation_count": 5,
+    "prompt_template": "{Question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+    "variations": [
+      "{Question}\n\n{formatted_mc_col}\n\nChoose the correct letter only.",
+      "{Question}\n\n{formatted_mc_col}\n\nJust respond with the corresponding letter.",
+      "Read the question carefully and provide your answer:\n{Question}\n\n{formatted_mc_col}\n\nAnswer using the letter only.",
+      "{Question}\n\n{formatted_mc_col}\n\nPlease provide your answer with the designated letter.",
+      "{Question}\n\n{formatted_mc_col}\n\nRespond with only the letter that represents your choice.",
+      "{Question}\n\n{formatted_mc_col}\n\nAnswer with the letter only."
+    ]
+  },
+  "ANLI": {
+    "variation_count": 10,
+    "prompt_template": "Premise: {premise}\n\nHypothesis: {hypothesis}\n\nDoes the hypothesis follow from the premise?\n\nAnswer with 'entailment', 'neutral', or 'contradiction'.",
+    "variations": [
+      "Premise: {premise}\n\nHypothesis: {hypothesis}\n\nBased on the premise, does the hypothesis follow?\nChoose from: 'entailment', 'neutral', or 'contradiction'.",
+      "Given the following premise: {premise}\n\nAnd the hypothesis: {hypothesis}\n\nDetermine if the hypothesis logically follows. Respond with 'entailment', 'neutral', or 'contradiction'.",
+      "Here is the premise: {premise}\n\nAnd here is the hypothesis: {hypothesis}\n\nDoes the hypothesis logically follow the premise? Reply with 'entailment', 'neutral', or 'contradiction'.",
+      "Consider the premise: {premise}\n\nAnd the hypothesis: {hypothesis}\n\nDoes the hypothesis follow from the premise? Answer with 'entailment', 'neutral', or 'contradiction'.",
+      "Premise given: {premise}\n\nHypothesis: {hypothesis}\n\nDoes the hypothesis follow the premise? State 'entailment', 'neutral', or 'contradiction'.",
+      "Evaluate the following premise: {premise}\n\nAnd the hypothesis: {hypothesis}\n\nDoes it follow? Use 'entailment', 'neutral', or 'contradiction'.",
+      "Premise: {premise}\n\nHypothesis: {hypothesis}\nDoes it logically follow from the premise?\nRespond with 'entailment', 'neutral', or 'contradiction'.",
+      "Premise: {premise}\nHypothesis: {hypothesis}\n\nBased on this, does the hypothesis follow logically?\nAnswer 'entailment', 'neutral', or 'contradiction'.",
+      "Assess the following premise: {premise}\n\nAnd the hypothesis: {hypothesis}\n\nDoes the hypothesis follow? Select 'entailment', 'neutral', or 'contradiction'.",
+      "Given the premise: {premise}\n\nAnd the hypothesis: {hypothesis}\n\nDetermine if the hypothesis follows. Answer with 'entailment', 'neutral', or 'contradiction'.",
+      "Premise: {premise}\n\nHypothesis: {hypothesis}\n\nDoes the hypothesis follow from the premise?\n\nAnswer with 'entailment', 'neutral', or 'contradiction'."
+    ]
+  }
+}

@@ -1,0 +1,788 @@
+[
+    {
+        "id": 1,
+        "dataset": "jeggers/words_length_short",
+        "name": "count chars in english words",
+        "type": "free-text",
+        "prompt_template": "How many characters are in the word '{word}'. Answer with only a number.",
+        "variations_for_prompt_template": 10,
+        "out_col": "length",
+        "description": "count the number of characters in a normal english word",
+        "result_type": {
+            "type": "integer"
+        }
+    },
+    {
+        "id": 2,
+        "dataset": "jeggers/scrambled_words_length_short",
+        "name": "count chars in scrambled words",
+        "type": "free-text",
+        "prompt_template": "How many characters are in this word of scrambled letters: '{scrambled}'\n Answer with only a number.",
+        "variations_for_prompt_template": 10,
+        "out_col": "length",
+        "description": "count the number of characters in a scrambled english word",
+        "result_type": {
+            "type": "integer"
+        }
+    },
+    {
+        "id": 3,
+        "dataset": "jeggers/wikipedia_paragraphs_length",
+        "name": "count chars in paragraph",
+        "type": "free-text",
+        "prompt_template": "How many characters are in this paragraph. Answer with only a number. Count EVERY character, including whitespace, newlines and punctuation.\n\nParagraph:\n{text}",
+        "variations_for_prompt_template": 10,
+        "out_col": "length",
+        "description": "count the number of characters in a short paragraph",
+        "result_type": {
+            "type": "integer"
+        }
+    },
+    {
+        "id": 4,
+        "dataset": "jeggers/wikipedia_paragraphs_word_count",
+        "name": "count words in paragraph",
+        "type": "free-text",
+        "prompt_template": "How many words are in this paragraph. The number of words is defined as how many parts there are if you split at whitespace and new lines. Answer with only a number.\n\nParagraph:\n{text}",
+        "variations_for_prompt_template": 10,
+        "out_col": "word_count",
+        "description": "count the number of words in a short paragraph",
+        "result_type": {
+            "type": "integer"
+        }
+    },
+    {
+        "id": 5,
+        "dataset": "race",
+        "subset": "high",
+        "name": "RACE high school",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "options",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "Choose the best answer from the given options to answer the question based on the article. Answer with the letter of the correct option.\n\nArticle:\n{article}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer",
+        "description": "Text based MC questions for high school students",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 6,
+        "dataset": "super_glue",
+        "subset": "cb",
+        "split": "train",
+        "name": "SuperGLUE cb",
+        "type": "multiple-choice",
+        "prompt_template": "Decide if the hypothesis is entailed by the premise, contradicts the premise, or is neutral to the premise. Answer with 'entailment', 'contradiction', or 'neutral'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "premise and hypothesis, decide for entailment, contradiction or neutral",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 7,
+        "dataset": "super_glue",
+        "subset": "copa",
+        "split": "train",
+        "name": "SuperGLUE copa",
+        "type": "multiple-choice",
+        "prompt_template": "Given the premise and two choices, decide which choice is the {question} of the premise. Answer with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "premise, choice1, choice2, decide for the correct choice that is either the cause or the effect",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 8,
+        "dataset": "super_glue",
+        "subset": "multirc",
+        "split": "train",
+        "name": "SuperGLUE multirc",
+        "type": "multiple-choice",
+        "prompt_template": "Read the paragraph, the question and the answer option. Decide if the answer is a correct option (there could potentially be other correct options that are not given) or not given the text. Answer with 'True' or 'False'.\n\nPassage:\n{paragraph}\n\nQuestion:\n{question}\n\nAnswer:\n{answer}",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "multiple choice questions with multiple correct answers",
+        "result_type": {
+            "type": "boolean"
+        }
+    },
+    {
+        "id": 9,
+        "dataset": "jeggers/super_glue_record",
+        "name": "SuperGLUE record",
+        "type": "free-text",
+        "prompt_template": "Read the passage and the statement containing a @placeholder. Decide which word fills the placeholder correctly. Answer with only the word.\n\nPassage:\n{passage}\n\nStatement:\n{query}",
+        "variations_for_prompt_template": 10,
+        "out_col": "answers",
+        "description": "passage and statement containing a blank, decide for the correct word to fill in the blank",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 10,
+        "dataset": "super_glue",
+        "split": "train",
+        "subset": "rte",
+        "name": "SuperGLUE rte",
+        "type": "multiple-choice",
+        "prompt_template": "Decide if the hypothesis is entailed by the premise or not. Answer with 'entailment' or 'not_entailment'.\n\nPremise:\n{premise}\n\nHypothesis:\n{hypothesis}",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "premise and hypothesis, decide for entailment, or not entailment",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 11,
+        "dataset": "super_glue",
+        "subset": "wic",
+        "split": "train",
+        "name": "SuperGLUE wic",
+        "type": "multiple-choice",
+        "prompt_template": "Read the two sentences, find the word that appears in both sentences and decide if the word has the same meaning in both sentences. Answer with 'True' or 'False'.\n\nSentence 1:\n{sentence1}\n\nSentence 2:\n{sentence2}",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "words in context: two sentences with same word, decide for same meaning or not",
+        "result_type": {
+            "type": "boolean"
+        }
+    },
+    {
+        "id": 12,
+        "dataset": "super_glue",
+        "subset": "boolq",
+        "split": "train",
+        "name": "SuperGLUE boolq",
+        "type": "multiple-choice",
+        "prompt_template": "Answer the question with True or False. Use the given passage below.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "boolean questions: Rather easy True/False questions with grounding in a passage",
+        "result_type": {
+            "type": "boolean"
+        }
+    },
+    {
+        "id": 13,
+        "dataset": "jeggers/competition_math",
+        "name": "MATH",
+        "type": "free-text",
+        "prompt_template": "Solve the math problem. Answer with only the final result. Use a latex expression, if the result is a fraction, includes a root, etc. Write matrix entries as x/y and all other fractions as \\frac{{x}}{{y}}. For coefficients, do not include a multiplication symbol. For expressions with multiple variables, order the variables alphabetically. For polynomials, express them in decreasing degree order. \n\nProblem:\n{problem}",
+        "variations_for_prompt_template": 10,
+        "out_col": "extracted_solution",
+        "description": "very hard math problems",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 14,
+        "dataset": "jeggers/gsm8k_extracted_solution",
+        "split": "test",
+        "name": "gsm8k",
+        "type": "free-text",
+        "prompt_template": "Solve the math problem. Answer with only the final result as a number. (no thousand separator)\n\nQuestion:\n{question}",
+        "variations_for_prompt_template": 10,
+        "out_col": "extracted_answer",
+        "description": "Grade school math word problems",
+        "result_type": {
+            "type": "integer"
+        },
+        "use_only": "test",
+        "load_max_samples": 1000
+    },
+    {
+        "id": 15,
+        "dataset": "aqua_rat",
+        "name": "AquaRat",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "options",
+            "mc_sep": "\n"
+        },
+        "prompt_template": "Solve the math problem. Choose the best answer from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+        "variations_for_prompt_template": 10,
+        "out_col": "correct",
+        "description": "Math word problems with multiple choice answers",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 16,
+        "dataset": "math_qa",
+        "name": "MathQA",
+        "type": "free-text",
+        "prompt_template": "Solve the math problem. Choose the best answer from the given options. Answer with the single letter corresponding to the correct option.\n\nProblem:\n{Problem}\n\nOptions:\n{options}",
+        "variations_for_prompt_template": 10,
+        "out_col": "correct",
+        "description": "Math word problems with multiple choice answers",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 17,
+        "dataset": "jeggers/ai2_arc_challenge_formatted",
+        "name": "ARC challenge",
+        "type": "multiple-choice",
+        "out_col": "answerKey",
+        "mc_options": {
+            "mc_col": "choices_sequence",
+            "mc_sep": "\n"
+        },
+        "prompt_template": "Answer the question with the best option from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+        "variations_for_prompt_template": 10,
+        "description": "Difficult science questions with multiple choice answers",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 18,
+        "dataset": "jeggers/ai2_arc_easy_formatted",
+        "name": "ARC easy",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "choices_sequence",
+            "mc_sep": "\n"
+        },
+        "prompt_template": "Answer the question with the best option from the given options. Answer with only the letter of the correct option.\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+        "variations_for_prompt_template": 10,
+        "out_col": "answerKey",
+        "description": "Easy science questions with multiple choice answers",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 19,
+        "dataset": "allenai/lila",
+        "subset": "asdiv",
+        "name": "asdiv",
+        "type": "number",
+        "prompt_template": "Solve the math problem. Answer with only the final result.\n\nProblem:\n{input}",
+        "variations_for_prompt_template": 10,
+        "out_col": "output_answer",
+        "description": "Mostly simple math word problems",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 20,
+        "dataset": "jeggers/logiqa2_formatted",
+        "name": "logiqa2",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "formatted_options",
+            "mc_sep": "\n"
+        },
+        "prompt_template": "Read the context and answer the question. Choose the best answer from the given options. Anser with only the letter of the correct option.\n\nContext:\n{text}\n\nQuestion:\n{question}\n\nOptions:\n{formatted_mc_col}",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer_char",
+        "description": "Logical, very hard questions with given context and answer options",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 21,
+        "dataset": "jeggers/drop_single_number",
+        "name": "drop single number",
+        "type": "number",
+        "prompt_template": "Read the passage and answer the question. Answer with only the final answer as a number.\n\nPassage:\n{passage}\n\nQuestion:\n{question}",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer",
+        "description": "reading comprehension with simple math reasoning",
+        "result_type": {
+            "type": "integer"
+        }
+    },
+    {
+        "id": 22,
+        "dataset": "ChilleD/StrategyQA",
+        "name": "strategy-qa",
+        "type": "boolean",
+        "prompt_template": "Answer with only true/false.\n\nFacts:\n{facts}\n\nQuestion:\n{question}",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer",
+        "description": "QA with implicit requrired reasoning. True/false questions",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 23,
+        "dataset": "jeggers/hotpot_qa_hard_relevant_context",
+        "name": "hotpot qa hard",
+        "type": "free-text",
+        "prompt_template": "Answer the question given the context.\n\nContext:\n{relevant_context}\n\nQuestion:\n{question}",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer",
+        "description": "QA with context, requires multi step reasoning, free text answers",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 24,
+        "dataset": "metaeval/reclor",
+        "name": "reclor",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "answers",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "{context}\n\n{question} Answer with the letter only.\n\n{formatted_mc_col}",
+        "variations_for_prompt_template": 5,
+        "out_col": "label",
+        "description": "Logic multiple choice questions with context",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 25,
+        "dataset": "jeggers/more_crosswords",
+        "name": "crosswords",
+        "type": "free-text",
+        "prompt_template": "This is a crossword clue:\nClue: {clue}\nYear of publication: {year}\nLength of the word: {length}\nHint 1: {hint}\nHint 2: {hint2}\n\nAnswer with the word that fits the clue. All UPPERCASE.",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer",
+        "description": "Crossword clues with year, length and hints",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 26,
+        "dataset": "jeggers/jeopardy",
+        "name": "jeopardy",
+        "type": "free-text",
+        "prompt_template": "This is a question from a Quiz:\nCategory: {category}\nQuestion: {question}\nNumber of words in answer: {num_words}\n\nAnswer with the correct word or phrase. Often an article is included in the answer. When asked for two things, use '&' instead of 'and'.",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer",
+        "description": "Jeopardy questions with category and number of words in answer",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 27,
+        "dataset": "olegbask/AR-LSAT",
+        "name": "LSAT-AR",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "answers",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "Einstein puzzle type questions; pure logic",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 28,
+        "dataset": "tasksource/lsat-rc",
+        "name": "LSAT-RC",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "answers",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 5,
+        "out_col": "label",
+        "description": "Reading comprehension with multiple choice answers",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 29,
+        "dataset": "tasksource/lsat-lr",
+        "name": "LSAT-LR",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "answers",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "{context}\n\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 5,
+        "out_col": "label",
+        "description": "Logical reasoning with multiple choice answers",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 30,
+        "dataset": "jeggers/big_bench_hard",
+        "name": "big bench hard",
+        "type": "free-text",
+        "prompt_template": "{input}",
+        "out_col": "target",
+        "keep_columns": [
+            "original_dataset"
+        ],
+        "description": "Harder questions from the Big Bench",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 31,
+        "dataset": "TIGER-Lab/MMLU-Pro",
+        "name": "MMLU-Pro",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "options",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "keep_columns": [
+            "category"
+        ],
+        "prompt_template": "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 5,
+        "out_col": "answer_index",
+        "description": "Hard multiple choice questions",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 32,
+        "dataset": "jeggers/riddle_sense",
+        "name": "riddle sense",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "choices",
+            "mc_sep": "\n"
+        },
+        "prompt_template": "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 5,
+        "out_col": "answerKey",
+        "description": "Riddles with multiple choice answers",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 33,
+        "dataset": "jeggers/winogrande",
+        "name": "winogrande",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "options",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "Fill the placeholder with the best option:\n{sentence}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer",
+        "description": "Find correct word to fill in the blank (difficult)",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 34,
+        "dataset": "ricdomolm/hellaswag_mc",
+        "name": "hellaswag",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "choices",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "What ending fits best?\n{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 10,
+        "out_col": "answer",
+        "description": "Choose the best ending for a given context",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 35,
+        "dataset": "ChilleD/SVAMP",
+        "name": "svamp",
+        "type": "free-text",
+        "prompt_template": "Answer with a single number.\n\nQuestion:\n{question_concat}",
+        "variations_for_prompt_template": 10,
+        "out_col": "Answer",
+        "description": "Math word problems with single number answers",
+        "result_type": {
+            "type": "integer"
+        }
+    },
+    {
+        "id": 36,
+        "dataset": "tasksource/com2sense",
+        "name": "com2sense",
+        "type": "multiple-choice",
+        "prompt_template": "Is the following correct, logical or makes sense?\n{sent}\n\nAnswer with True or False.",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "Decide if a sentence is correct, logical or makes sense",
+        "result_type": {
+            "type": "boolean"
+        }
+    },
+    {
+        "id": 37,
+        "dataset": "MU-NLPC/Calc-ape210k",
+        "name": "ape210k",
+        "type": "number",
+        "prompt_template": "{question}\n\nAnswer with a number. No thousands separator, round to 4 decimal places if necessary.",
+        "variations_for_prompt_template": 10,
+        "out_col": "result_float",
+        "description": "Math word problems with single number answers",
+        "result_type": {
+            "type": "float"
+        }
+    },
+    {
+        "id": 38,
+        "dataset": "skrishna/coin_flip",
+        "name": "coin flip",
+        "type": "multiple-choice",
+        "prompt_template": "Answer with yes or no.\n\n{inputs}",
+        "variations_for_prompt_template": 5,
+        "out_col": "targets",
+        "description": "Decide if a coin flip is correct",
+        "result_type": {
+            "type": "string"
+        },
+        "use_only": "test",
+        "load_max_samples": 250
+    },
+    {
+        "id": 39,
+        "dataset": "ChilleD/LastLetterConcat",
+        "name": "last letter concat",
+        "type": "free-text",
+        "prompt_template": "{question}",
+        "out_col": "answer",
+        "description": "Concatenate the last letters of the words",
+        "result_type": {
+            "type": "string"
+        },
+        "use_only": "test"
+    },
+    {
+        "id": 40,
+        "dataset": "jaredfern/codah",
+        "subset": "codah",
+        "name": "codah",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "candidate_answers",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "What is the most likely completion of the sentence?\n{question_propmt}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 10,
+        "out_col": "correct_answer_idx",
+        "description": "Complete the sentence with the most likely completion",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 41,
+        "dataset": "jeggers/DMath",
+        "name": "DMath",
+        "type": "free-text",
+        "prompt_template": "{question_en}",
+        "out_col": "answer_en",
+        "description": "Difficult math problems",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 42,
+        "dataset": "jeggers/truthful_qa_formatted",
+        "name": "truthful qa",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "mc1_target",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 5,
+        "out_col": "mc1_label",
+        "description": "Simple MC QA with common misconceptions",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 43,
+        "dataset": "jeggers/gpqa_formatted",
+        "subset": "main",
+        "name": "gpqa main",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "options",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "{Question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 5,
+        "keep_columns": [
+            "Canary String"
+        ],
+        "out_col": "answer",
+        "description": "Google proof MC QA, very hard",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 44,
+        "dataset": "jeggers/gpqa_formatted",
+        "subset": "diamond",
+        "name": "gpqa diamond",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "options",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "{Question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "variations_for_prompt_template": 5,
+        "keep_columns": [
+            "Canary String"
+        ],
+        "out_col": "answer",
+        "description": "Google proof MC QA, very hard",
+        "result_type": {
+            "type": "char"
+        },
+        "use_only": "test"
+    },
+    {
+        "id": 45,
+        "dataset": "jeggers/reversal_curse",
+        "subset": "reverse",
+        "name": "reversal curse",
+        "type": "free-text",
+        "prompt_template": "{question}\n Answer with only the name",
+        "variations_for_prompt_template": 5,
+        "out_col": "answer",
+        "description": "Reverse information retrieval questions",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 46,
+        "dataset": "jeggers/sat_package_v3",
+        "name": "SAT Analogies",
+        "type": "multiple-choice",
+        "mc_options": {
+            "mc_col": "options",
+            "mc_sep": "\n",
+            "add_mc_labels": true
+        },
+        "prompt_template": "Choose the best option.\n{question}\nlike\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
+        "out_col": "solution",
+        "description": "rather difficult analogy questions from SAT tests",
+        "result_type": {
+            "type": "char"
+        }
+    },
+    {
+        "id": 47,
+        "dataset": "facebook/anli",
+        "split": "train_r3",
+        "name": "ANLI",
+        "type": "multiple-choice",
+        "prompt_template": "Premise: {premise}\n\nHypothesis: {hypothesis}\n\nDoes the hypothesis follow from the premise?\n\nAnswer with 'entailment', 'neutral', or 'contradiction'.",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "ANLI dataset",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 48,
+        "dataset": "coref-data/superglue_wsc_raw",
+        "subset": "wsc.fixed",
+        "split": "train",
+        "name": "SuperGLUE WSC",
+        "type": "multiple-choice",
+        "prompt_template": "{text}\n\nIn the text above, does '{span2_text}' (word number {span2_index}) refer to '{span1_text}'?\n\nAnswer with 'True' or 'False'.",
+        "variations_for_prompt_template": 10,
+        "out_col": "label",
+        "description": "SuperGLUE WSC dataset",
+        "result_type": {
+            "type": "boolean"
+        }
+    },
+    {
+        "id": 49,
+        "dataset": "jeggers/words_length_short",
+        "name": "reverse words",
+        "type": "free-text",
+        "prompt_template": "Reverse the word '{word}'.",
+        "variations_for_prompt_template": 10,
+        "out_col": "reverse",
+        "description": "reverse simple english words",
+        "result_type": {
+            "type": "string"
+        }
+    },
+    {
+        "id": 50,
+        "dataset": "jeggers/AIW",
+        "subset": "easy",
+        "name": "AIW",
+        "type": "number",
+        "prompt_template": "{question}\n\nAnswer with a number.",
+        "out_col": "answer",
+        "description": "Alice in the wonderland - how many brothers/cousins",
+        "result_type": {
+            "type": "integer"
+        },
+        "use_only": "test"
+    },
+    {
+        "id": 51,
+        "dataset": "jeggers/AIW",
+        "subset": "hard",
+        "name": "AIW+",
+        "type": "number",
+        "prompt_template": "{question}\n\nAnswer with a number.",
+        "out_col": "answer",
+        "description": "Alice in the wonderland - how many brothers/cousins",
+        "result_type": {
+            "type": "integer"
+        },
+        "use_only": "test"
+    }
+]
