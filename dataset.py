@@ -49,13 +49,14 @@ class ExtendetDataset:
         few_shot_question_col=None,
         helpful_tools=[],
         keep_columns=[],
-        use_only=None,
+        use_only=USE_ONLY_TRAIN,
         evaluation_method=EVALUATION_STRING_MATCH,
         load_max_samples=100000,
         keep_in_memory=False,
         variations_for_prompt_template=None,
         lock=contextlib.nullcontext(),
         split=None,
+        all_in_train_split=True,
         **kwargs,
     ):
         formatter = string.Formatter()
@@ -113,13 +114,28 @@ class ExtendetDataset:
         if not isinstance(self.dataset, DatasetDict):
             self.dataset = DatasetDict({"train": self.dataset})
 
-        # merge every split that is not test to train
-        # if no train split is available, merge all splits to train
-        unknown_splits = (
-            [key for key in self.dataset.keys() if key != "test"]
-            if "train" in self.dataset
-            else list(self.dataset.keys())
-        )
+        # add question_id column: dataset name + ': ' + split name + '#' + index
+        for key in self.dataset.keys():
+            # delete question id column if it exists
+            if "question_id" in self.dataset[key].column_names:
+                self.dataset[key] = self.dataset[key].remove_columns("question_id")
+            self.dataset[key] = self.dataset[key].add_column(
+                "question_id",
+                [f"{self.name}: {key}#{i}" for i in range(len(self.dataset[key]))],
+            )
+
+        if all_in_train_split:
+            # merge all splits to train
+            unknown_splits = list(self.dataset.keys())
+        else:
+            # merge every split that is not test to train
+            # if no train split is available, merge all splits to train
+            unknown_splits = (
+                [key for key in self.dataset.keys() if key != "test"]
+                if "train" in self.dataset
+                else list(self.dataset.keys())
+            )
+
         if unknown_splits:
             self.dataset["train"] = concatenate_datasets(
                 [self.dataset[key] for key in unknown_splits]
@@ -227,7 +243,7 @@ class ExtendetDataset:
             self.random_guess_accuracy_estimation = Counter(
                 [str(x) for x in self["train"][self.out_col]]
             ).most_common(1)[0][1] / len(self["train"])
-        
+
         # invalidate lock to make file pickable
         self.lock = None
 

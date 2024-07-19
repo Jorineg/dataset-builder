@@ -318,21 +318,16 @@
     "prompt_template": "Given the premise and two choices, decide which choice is the {question} of the premise. Answer with 'choice1' or 'choice2'.\n\nPremise:\n{premise}\n\nChoice 1:\n{choice1}\n\nChoice 2:\n{choice2}"
   },
   "MATH": {
-    "variation_count": 10,
+    "variation_count": 5,
+    "prompt_template": "Answer with a single number.\n{problem}",
     "variations": [
-      "Given the math problem below, find and indicate only the final result. Use a latex expression for fractions, roots, etc. For matrix entries, present them as x/y, and for all other fractions use \\frac{{x}}{{y}}. When dealing with coefficients, omit the multiplication symbol. Variables in expressions should be listed in alphabetical order. For polynomials, write them in decreasing degree order.\n\nProblem:\n{problem}",
-      "Resolve the following math problem and state only the final result. If it involves fractions or roots, use a latex expression. Matrix entries should be shown as x/y, and all other fractions as \\frac{{x}}{{y}}. Avoid using a multiplication symbol for coefficients. Variables in expressions must be in alphabetical order. Present polynomials in decreasing order of degree.\n\nProblem:\n{problem}",
-      "Please solve the math problem below and provide only the final result. For any fractions or roots, use a latex expression. Write matrix entries in x/y format and all other fractions as \\frac{{x}}{{y}}. Do not include multiplication symbols with coefficients. Arrange variables alphabetically, and for polynomials, display them in descending degree order.\n\nProblem:\n{problem}",
-      "Find the solution to the math problem and report only the final result. Use latex for fractions, roots, etc. Express matrix entries as x/y and all other fractions with \\frac{{x}}{{y}}. Exclude multiplication symbols with coefficients. List variables in alphabetical order. For polynomials, use decreasing degree order.\n\nProblem:\n{problem}",
-      "Solve the following math problem and provide only the final result. Use latex expressions for fractions, roots, etc. Matrix entries should be in x/y format, while other fractions should be in \\frac{{x}}{{y}} format. Coefficients should not have a multiplication symbol. Arrange variables alphabetically. Write polynomials in decreasing degree order.\n\nProblem:\n{problem}",
-      "Please resolve the math problem and answer with only the final result. Use latex expressions if there are fractions, roots, etc. Show matrix entries as x/y and other fractions as \\frac{{x}}{{y}}. Do not include multiplication symbols for coefficients. Order variables alphabetically. For polynomials, present them in decreasing order of degree.\n\nProblem:\n{problem}",
-      "Determine the answer to the math problem provided, giving only the final result. If applicable, use latex expressions for fractions and roots. Matrix entries should be written as x/y, and all other fractions as \\frac{{x}}{{y}}. Coefficients should not feature a multiplication symbol. List variables alphabetically and express polynomials in decreasing degree order.\n\nProblem:\n{problem}",
-      "Solve the problem below and provide only the final result using a latex expression for fractions, roots, etc. Matrix entries should be in x/y format and all other fractions as \\frac{{x}}{{y}}. Exclude multiplication symbols for coefficients. Variables should be ordered alphabetically. For polynomials, list terms in decreasing degree order.\n\nProblem:\n{problem}",
-      "Please solve the following math problem and give only the final result, using a latex expression for fractions or roots. Matrix entries should be expressed as x/y and any other fractions as \\frac{{x}}{{y}}. Avoid a multiplication symbol for coefficients. Variables should appear in alphabetical order. Present polynomials in descending degree order.\n\nProblem:\n{problem}",
-      "Solve the math problem below and answer only with the final result. Use latex expressions for fractions and roots when necessary. Write matrix entries in x/y format and all other fractions as \\frac{{x}}{{y}}. Do not use a multiplication symbol with coefficients. For expressions containing variables, they should appear alphabetically. Polynomials should be displayed in decreasing order of degree.\n\nProblem:\n{problem}",
-      "Solve the math problem. Answer with only the final result. Use a latex expression, if the result is a fraction, includes a root, etc. Write matrix entries as x/y and all other fractions as \\frac{{x}}{{y}}. For coefficients, do not include a multiplication symbol. For expressions with multiple variables, order the variables alphabetically. For polynomials, express them in decreasing degree order. \n\nProblem:\n{problem}"
-    ],
-    "prompt_template": "Solve the math problem. Answer with only the final result. Use a latex expression, if the result is a fraction, includes a root, etc. Write matrix entries as x/y and all other fractions as \\frac{{x}}{{y}}. For coefficients, do not include a multiplication symbol. For expressions with multiple variables, order the variables alphabetically. For polynomials, express them in decreasing degree order. \n\nProblem:\n{problem}"
+      "Provide just one number as the answer. {problem}",
+      "Give a single numerical answer. {problem}",
+      "Respond with only one number. {problem}",
+      "Please provide a single number for your answer. {problem}",
+      "{problem} Answer with only one number.",
+      "Answer with a single number.\n{problem}"
+    ]
   },
   "drop single number": {
     "variation_count": 10,
@@ -725,6 +720,42 @@
       "Assess the following premise: {premise}\n\nAnd the hypothesis: {hypothesis}\n\nDoes the hypothesis follow? Select 'entailment', 'neutral', or 'contradiction'.",
       "Given the premise: {premise}\n\nAnd the hypothesis: {hypothesis}\n\nDetermine if the hypothesis follows. Answer with 'entailment', 'neutral', or 'contradiction'.",
       "Premise: {premise}\n\nHypothesis: {hypothesis}\n\nDoes the hypothesis follow from the premise?\n\nAnswer with 'entailment', 'neutral', or 'contradiction'."
+    ]
+  },
+  "AIW": {
+    "variation_count": 5,
+    "prompt_template": "{question}\n\nAnswer with a number.",
+    "variations": [
+      "Please provide a response in the form of a number to the following question: {question}",
+      "For the question below, your answer should be a numerical value: {question}",
+      "{question}\nRespond with a number.",
+      "{question}\nYour answer must be a numerical value.",
+      "Considering the following question, answer using only a number: {question}",
+      "{question}\n\nAnswer with a number."
+    ]
+  },
+  "AIW+": {
+    "variation_count": 5,
+    "prompt_template": "{question}\n\nAnswer with a number.",
+    "variations": [
+      "Please provide a numerical answer. \n\n{question}",
+      "{question} \nPlease respond with a numerical value.",
+      "{question}. \nYour answer should be a number.",
+      "{question} \nKindly answer with a number.",
+      "Answer with a number: \n\n{question}",
+      "{question}\n\nAnswer with a number."
+    ]
+  },
+  "AIME": {
+    "variation_count": 5,
+    "prompt_template": "{Question}\n\nAnswer with a number.",
+    "variations": [
+      "'{Question}\n\nPlease answer using a number.'",
+      "'{Question}\n\nProvide your response in numerical form.'",
+      "'{Question}\n\nReply only with a number.'",
+      "'{Question}\n\nYour answer should be a numerical value.'",
+      "'{Question}\n\nKindly respond with a number.'",
+      "{Question}\n\nAnswer with a number."
     ]
   }
 }

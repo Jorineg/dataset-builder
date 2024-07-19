@@ -25,7 +25,8 @@ def combine_datasets(
     test_set_mode=TEST_SET_MODE_ORIGINAL,
     tokenizer=None,
     max_tokens=-1,
-    test_size=0.1,
+    test_size_in_dist=0.025,
+    test_size_finetune=0.2,
     in_col="input",
     prompt_template="{}",
     out_col="target",
@@ -38,6 +39,7 @@ def combine_datasets(
         "batched": True,
         "batch_size": -1,
     },
+    additional_keep_columns=[],
 ):
     if not seed:
         seed = random.randint(0, 1000000)
@@ -59,125 +61,6 @@ def combine_datasets(
     datasets = [
         dataset.map(batch_apply_prompt_template, **map_kwargs) for dataset in datasets
     ]
-
-    # filter all datasets for token length input and output
-    if tokenizer and max_tokens > 0:
-        print("filtering datasets for token length")
-
-        def batch_filter_function(batch):
-            tokens = tokenizer(
-                [
-                    input + output
-                    for input, output in zip(batch[in_col], batch[out_col])
-                ],
-            )
-            return [len(token) <= max_tokens for token in tokens["input_ids"]]
-
-        datasets = [
-            dataset.filter(batch_filter_function, **map_kwargs) for dataset in datasets
-        ]
-
-    if amounts is None:
-        amounts = [1] * len(datasets)
-    absolute_amounts = [int(amount / sum(amounts) * total) for amount in amounts]
-
-    # remove datasets with 0 absolute amount
-    new_datasets = []
-    new_absolute_amounts = []
-    for dataset, absolute_amount in zip(datasets, absolute_amounts):
-        if absolute_amount > 0:
-            new_datasets.append(dataset)
-            new_absolute_amounts.append(absolute_amount)
-    datasets = new_datasets
-    absolute_amounts = new_absolute_amounts
-
-    # perform split on datasets, if not already done
-    print("splitting datasets")
-    data_and_amounts = list(enumerate(zip(datasets, absolute_amounts)))
-    for i, (dataset, absolute_amount) in tqdm(
-        data_and_amounts, total=len(data_and_amounts)
-    ):
-        relative_amount = absolute_amount / total
-        target_test_size = int(
-            test_size * min(relative_amount * total, len(dataset["train"]))
-        )
-
-        if dataset.use_only == USE_ONLY_TRAIN:
-            # merge every split into train
-            datasets[i].dataset = DatasetDict(
-                {
-                    "train": concatenate_datasets(
-                        [dataset[key].dataset for key in dataset.keys()]
-                    ),
-                    "test": dataset["train"].dataset.select(range(0)),
-                }
-            )
-        elif dataset.use_only == USE_ONLY_TEST:
-            # merge every split into test
-            datasets[i].dataset = DatasetDict(
-                {
-                    "train": dataset["train"].dataset.select(range(0)),
-                    "test": concatenate_datasets(
-                        [dataset[key].dataset for key in dataset.keys()]
-                    ),
-                }
-            )
-        elif "test" not in dataset:
-            # if target test size is 0, sample 0 samples for test set
-            if target_test_size == 0:
-                datasets[i]["test"] = dataset["train"].select(range(0)).dataset
-            else:
-                datasets[i] = dataset["train"].train_test_split(
-                    test_size=target_test_size, seed=seed
-                )
-        else:
-            if (
-                test_set_mode == TEST_SET_MODE_CUT
-                and len(dataset["test"]) > target_test_size
-            ):
-                datasets[i]["test"] = (
-                    dataset["test"].select(range(target_test_size)).dataset
-                )
-                # add remaining samples to train set
-                datasets[i]["train"] = concatenate_datasets(
-                    [
-                        dataset["train"].dataset,
-                        dataset["test"].select(range(target_test_size, -1)).dataset,
-                    ]
-                )
-
-    available_amounts = [len(dataset["train"]) for dataset in datasets]
-
-    if any(
-        amount > available
-        for amount, available in zip(absolute_amounts, available_amounts)
-    ):
-        if unsufficient_data_mode == UNSUFFICIENT_DATA_MODE_ERROR:
-            raise ValueError("Not enough data available for the requested amounts")
-
-        # keep proportion of datasets but reduce total amount of final dataset
-        if unsufficient_data_mode == UNSUFFICIENT_DATA_MODE_REDUCE_TOTAL:
-            total, absolute_amounts = reduce_total(
-                available_amounts, absolute_amounts, total
-            )
-            names_of_unsufficient_datasets = [
-                dataset.name
-                for dataset, amount, available in zip(
-                    datasets, absolute_amounts, available_amounts
-                )
-                if amount > available
-            ]
-            print(
-                f"Reducing total amount of final dataset to {total} due to unsufficient data in the datasets {names_of_unsufficient_datasets}"
-            )
-
-        if unsufficient_data_mode == UNSUFFICIENT_DATA_MODE_REDUCE_PROPORTION:
-            for i in itertools.cycle(range(len(absolute_amounts))):
-                if sum(absolute_amounts) >= total:
-                    break
-                absolute_amounts[i] += 1
-            absolute_amounts = find_distribution(available_amounts, absolute_amounts)
-            print("Proportions of datasets reduced due to insufficient data")
 
     # Convert 'final_target' column to string type in all datasets
     new_datasets = []
@@ -223,6 +106,132 @@ def combine_datasets(
         new_datasets.append(dataset)
     datasets = new_datasets
 
+    # filter all datasets for token length input and output
+    if tokenizer and max_tokens > 0:
+        print("filtering datasets for token length")
+
+        def batch_filter_function(batch):
+            tokens = tokenizer(
+                [
+                    input + output
+                    for input, output in zip(batch[in_col], batch[out_col])
+                ],
+            )
+            return [len(tokenized) <= max_tokens for tokenized in tokens["input_ids"]]
+
+        datasets = [
+            dataset.filter(batch_filter_function, **map_kwargs) for dataset in datasets
+        ]
+
+    if amounts is None:
+        amounts = [1] * len(datasets)
+    absolute_amounts = [int(amount / sum(amounts) * total) for amount in amounts]
+
+    # remove datasets with 0 absolute amount
+    new_datasets = []
+    new_absolute_amounts = []
+    for dataset, absolute_amount in zip(datasets, absolute_amounts):
+        if absolute_amount > 0:
+            new_datasets.append(dataset)
+            new_absolute_amounts.append(absolute_amount)
+    datasets = new_datasets
+    absolute_amounts = new_absolute_amounts
+
+    # perform split on datasets, if not already done
+    print("splitting datasets")
+    # out_of_dist_test_set_amounts = []
+    data_and_amounts = list(enumerate(zip(datasets, absolute_amounts)))
+    for i, (dataset, absolute_amount) in tqdm(
+        data_and_amounts, total=len(data_and_amounts)
+    ):
+        # relative_amount = absolute_amount / total
+        # target_test_size = int(
+        #     test_size * min(relative_amount * total, len(dataset["train"]))
+        # )
+
+        if dataset.use_only == USE_ONLY_TRAIN:
+            # merge every split into train
+            datasets[i].dataset = DatasetDict(
+                {
+                    "train": concatenate_datasets(
+                        [dataset[key].dataset for key in dataset.keys()]
+                    ),
+                    "test": dataset["train"].dataset.select(range(0)),
+                }
+            )
+            # out_of_dist_test_set_amounts.append(0)
+        elif dataset.use_only == USE_ONLY_TEST:
+            # merge every split into test
+            datasets[i].dataset = DatasetDict(
+                {
+                    "train": dataset["train"].dataset.select(range(0)),
+                    "test": concatenate_datasets(
+                        [dataset[key].dataset for key in dataset.keys()]
+                    ),
+                }
+            )
+            # out_of_dist_test_set_amounts.append(len(dataset["test"]))
+        else:
+            raise ValueError(
+                "Dataset must have use_only set to USE_ONLY_TRAIN or USE_ONLY_TEST"
+            )
+        # elif "test" not in dataset:
+        #     # if target test size is 0, sample 0 samples for test set
+        #     if target_test_size == 0:
+        #         datasets[i]["test"] = dataset["train"].select(range(0)).dataset
+        #     else:
+        #         datasets[i] = dataset["train"].train_test_split(
+        #             test_size=target_test_size, seed=seed
+        #         )
+        # else:
+        #     if (
+        #         test_set_mode == TEST_SET_MODE_CUT
+        #         and len(dataset["test"]) > target_test_size
+        #     ):
+        #         datasets[i]["test"] = (
+        #             dataset["test"].select(range(target_test_size)).dataset
+        #         )
+        #         # add remaining samples to train set
+        #         datasets[i]["train"] = concatenate_datasets(
+        #             [
+        #                 dataset["train"].dataset,
+        #                 dataset["test"].select(range(target_test_size, -1)).dataset,
+        #             ]
+        #         )
+
+    available_amounts = [len(dataset["train"]) for dataset in datasets]
+
+    if any(
+        amount > available
+        for amount, available in zip(absolute_amounts, available_amounts)
+    ):
+        if unsufficient_data_mode == UNSUFFICIENT_DATA_MODE_ERROR:
+            raise ValueError("Not enough data available for the requested amounts")
+
+        # keep proportion of datasets but reduce total amount of final dataset
+        if unsufficient_data_mode == UNSUFFICIENT_DATA_MODE_REDUCE_TOTAL:
+            total, absolute_amounts = reduce_total(
+                available_amounts, absolute_amounts, total
+            )
+            names_of_unsufficient_datasets = [
+                dataset.name
+                for dataset, amount, available in zip(
+                    datasets, absolute_amounts, available_amounts
+                )
+                if amount > available
+            ]
+            print(
+                f"Reducing total amount of final dataset to {total} due to unsufficient data in the datasets {names_of_unsufficient_datasets}"
+            )
+
+        if unsufficient_data_mode == UNSUFFICIENT_DATA_MODE_REDUCE_PROPORTION:
+            for i in itertools.cycle(range(len(absolute_amounts))):
+                if sum(absolute_amounts) >= total:
+                    break
+                absolute_amounts[i] += 1
+            absolute_amounts = find_distribution(available_amounts, absolute_amounts)
+            print("Proportions of datasets reduced due to insufficient data")
+
     if shuffle_individual_datasets:
         datasets = [
             dataset.shuffle(seed=seed).flatten_indices() for dataset in datasets
@@ -233,6 +242,7 @@ def combine_datasets(
     for dataset in datasets:
         all_keep_columns.update(dataset.keep_columns)
     all_keep_columns = list(all_keep_columns)
+    all_keep_columns += additional_keep_columns
 
     # add keep columns to datasets if not already present
     updated_datasets = []
@@ -262,15 +272,15 @@ def combine_datasets(
 
         dataset = dataset.select_columns([in_col, out_col] + all_keep_columns)
 
-        dataset["train"] = dataset["train"].add_column(
-            "evaluation_method", [dataset.evaluation_method] * len(dataset["train"])
-        )
+        # dataset["train"] = dataset["train"].add_column(
+        #     "evaluation_method", [dataset.evaluation_method] * len(dataset["train"])
+        # )
         dataset["train"] = dataset["train"].add_column(
             "dataset", [dataset.name] * len(dataset["train"])
         )
-        dataset["test"] = dataset["test"].add_column(
-            "evaluation_method", [dataset.evaluation_method] * len(dataset["test"])
-        )
+        # dataset["test"] = dataset["test"].add_column(
+        #     "evaluation_method", [dataset.evaluation_method] * len(dataset["test"])
+        # )
         dataset["test"] = dataset["test"].add_column(
             "dataset", [dataset.name] * len(dataset["test"])
         )
@@ -278,37 +288,61 @@ def combine_datasets(
     datasets = updated_datasets
 
     train_set = concatenate_datasets([dataset["train"].dataset for dataset in datasets])
-    test_set = concatenate_datasets([dataset["test"].dataset for dataset in datasets])
+    test_out_dist = concatenate_datasets(
+        [dataset["test"].dataset for dataset in datasets]
+    )
 
     # check if features are the same in train and test set
     # if not and one of them is null type, change to other type
     for feature_name in train_set.features:
-        if not feature_name in test_set.features:
+        if not feature_name in test_out_dist.features:
             raise ValueError(
                 f"Feature {feature_name} is not present in test set but in train set"
             )
-        if train_set.features[feature_name] != test_set.features[feature_name]:
+        if train_set.features[feature_name] != test_out_dist.features[feature_name]:
             if train_set.features[feature_name] == Value("null"):
                 train_set = train_set.cast_column(
-                    feature_name, test_set.features[feature_name]
+                    feature_name, test_out_dist.features[feature_name]
                 )
-            elif test_set.features[feature_name] == Value("null"):
-                test_set = test_set.cast_column(
+            elif test_out_dist.features[feature_name] == Value("null"):
+                test_out_dist = test_out_dist.cast_column(
                     feature_name, train_set.features[feature_name]
                 )
 
-    result = DatasetDict({"train": train_set, "test": test_set})
+    # split train set to get in_dist and finetune set
+    splitted = train_set.train_test_split(test_size=test_size_in_dist, seed=seed)
+    train_set, test_in_dist = splitted["train"], splitted["test"]
+    splitted = train_set.train_test_split(
+        test_size=(test_size_finetune * total) / len(train_set), seed=seed
+    )
+    train_set, finetune_set = splitted["train"], splitted["test"]
+
+    train_proportion_left = 1- test_size_in_dist - test_size_finetune
+    absolute_amounts = [int(amount * train_proportion_left) for amount in absolute_amounts]
+
+    result = DatasetDict(
+        {
+            "train": train_set,
+            "test_out_dist": test_out_dist,
+            "test_in_dist": test_in_dist,
+            "finetune": finetune_set,
+        }
+    )
     if shuffle_final_dataset:
         result = result.shuffle(seed=seed).flatten_indices()
 
     if print_statistics:
         print_dataset_statistics(
-            datasets, absolute_amounts, [len(dataset["test"]) for dataset in datasets]
+            datasets,
+            absolute_amounts,
+            [len(dataset["test"]) for dataset in datasets],
         )
 
     if visualize:
         visualize_datasets(
-            datasets, absolute_amounts, [len(dataset["test"]) for dataset in datasets]
+            datasets,
+            absolute_amounts,
+            [len(dataset["test"]) for dataset in datasets],
         )
 
     return result
@@ -394,6 +428,10 @@ def visualize_datasets(datasets, absolute_amounts_train, absolute_amounts_test):
         }
     )
 
+    # filter out datasets with 0 samples
+    train_data = train_data[train_data["Absolute"] > 0]
+    test_data = test_data[test_data["Absolute"] > 0]
+
     # Create labels in the format "name (absolute)"
     train_data["Label"] = train_data.apply(
         lambda row: f"{row['Dataset']} ({row['Absolute']})", axis=1
@@ -411,6 +449,7 @@ def visualize_datasets(datasets, absolute_amounts_train, absolute_amounts_test):
     train_barplot = sns.barplot(x="Proportion", y="Label", data=train_data)
     plt.title(f"Train Dataset Proportions (Total: {total_train})")
     plt.xlabel("Proportion")
+    plt.yticks(fontsize=8)
     plt.ylabel("Dataset")
     plt.tight_layout()  # Adjust layout to prevent labels from being cut off
     plt.savefig("train_dataset.png")
@@ -419,8 +458,9 @@ def visualize_datasets(datasets, absolute_amounts_train, absolute_amounts_test):
     # Plot Test dataset
     plt.figure(figsize=(10, 8))
     test_barplot = sns.barplot(x="Proportion", y="Label", data=test_data)
-    plt.title(f"Test Dataset Proportions (Total: {total_test})")
+    plt.title(f"Out of Distribution Test Dataset Proportions (Total: {total_test})")
     plt.xlabel("Proportion")
+    plt.yticks(fontsize=8)
     plt.ylabel("Dataset")
     plt.tight_layout()  # Adjust layout to prevent labels from being cut off
     plt.savefig("test_dataset.png")
@@ -499,6 +539,10 @@ def print_dataset_statistics(datasets, absolute_amounts_train, absolute_amounts_
 
     train_df = pd.DataFrame(train_stats)
     test_df = pd.DataFrame(test_stats)
+
+    # filter out datasets with 0 samples
+    train_df = train_df[train_df["Absolute"] > 0]
+    test_df = test_df[test_df["Absolute"] > 0]
 
     # sort by descending proportion
     train_df = train_df.sort_values("Proportion", ascending=False)

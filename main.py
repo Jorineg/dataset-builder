@@ -14,6 +14,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import os
 import pathlib
 import threading
+from transformers import AutoTokenizer
 
 lock = threading.Lock()
 
@@ -39,7 +40,7 @@ def load_datasets_from_json(file_path):
     return datasets
 
 
-total_size = 50000
+total_size = 80000
 filename = "datasets.pkl"
 
 
@@ -65,16 +66,9 @@ proportions = {
     "count chars in scrambled words": 0.5,
     "count chars in paragraph": 0.5,
     "count words in paragraph": 0.5,
-    # "reverse words": 0.5,
-    # "SuperGLUE cb": 0.5,
-    # "SuperGLUE copa": 0.5,
-    # "SuperGLUE multirc": 0.5,
-    # "SuperGLUE record": 0.5,
-    # "SuperGLUE rte": 0.5,
-    # "SuperGLUE wic": 0.5,
-    # "SuperGLUE boolq": 0.5,
     "MMLU-Pro": 2,
     "DMath": 2,
+    "MATH": 2,
     "MathQA": 2,
     "ape210k": 2,
     "LSAT-AR": 2,
@@ -90,6 +84,10 @@ for dataset in datasets:
 
 amounts = [proportions[dataset.name] for dataset in datasets]
 
+tokenizer = AutoTokenizer.from_pretrained("jeggers/OpenELM-270M-Instruct")
+
+max_tokens = 200
+
 print(f"loaded {len(datasets)} datasets from pickle file.")
 dataset = combine_datasets(
     datasets,
@@ -97,11 +95,15 @@ dataset = combine_datasets(
     amounts=amounts,
     in_col="final_input",
     out_col="final_target",
-    test_size=0.1,
+    test_size_finetune=0.2,
+    test_size_in_dist=0.025,
     test_set_mode=TEST_SET_MODE_CUT,
     unsufficient_data_mode=UNSUFFICIENT_DATA_MODE_REDUCE_PROPORTION,
     visualize=True,
     print_statistics=True,
+    tokenizer=tokenizer,
+    max_tokens=max_tokens,
+    additional_keep_columns=["question_id"],
 )
 
 # store the combined dataset for later use
@@ -122,18 +124,28 @@ hf_name = "jeggers/CoT-Collection"
 # push to hub
 dataset.push_to_hub(hf_name)
 
-dataset_card_str = """
+dataset_card_str = f"""
 ---
 ## Dataset Card: CoT-Collection
-Collection of various different tasks.
-The tasks aim at needing reasoning and diverse Chain-of-Thought strategies.
-Some tasks are chosen to be easy and don't require much reasoning.
+This dataset encompasses a variety of tasks aimed at necessitating reasoning and diverse Chain-of-Thought strategies. While some tasks are intentionally simple and require minimal reasoning, others are more complex.
 
-*Note* that Big Bench Hard itself contains 27 different tasks.
+*Note* that Big Bench Hard includes 27 different tasks.
 
-*Also Note* that the test set has a very different distribution of tasks than the training set.
+*Also Note* that the test set has a significantly different task distribution compared to the training set.
 
-This dataset contains GPQA. Please do not publish it in plain text on the web.
+The dataset includes GPQA, which should not be published in plain text online.
+
+Designed for reinforcement learning, this dataset lacks Chain-of-Thought annotations for the problems. It only provides questions and answers. However, a subset with automated Chain-of-Thought annotations is available here: [jeggers/CoT-Collection-Rationales](https://huggingface.co/datasets/jeggers/CoT-Collection-Rationales).
+
+The dataset consists of short questions, each with a maximum of {max_tokens} tokens for the question and correct answer (using the llama-2 tokenizer).
+
+This dataset is divided into four splits:
+- `train`: The training set.
+- `test_in_dist`: The test set with the same task distribution as the training set.
+- `finetune`: Intended for finetuning, with the same distribution as `train`.
+- `test_out_dist`: The test set with a different task distribution than the training set.
+
+The Code used to create this dataset can be found here: [dataset-builder](https://github.com/Jorineg/dataset-builder).
 """
 
 dataset_card_str += (
@@ -160,10 +172,8 @@ if os.path.exists("train_statistics.md"):
     with open("train_statistics.md", "r") as file:
         dataset_card_str += file.read()
 
-
-dataset_card_str += (
-    f"### Statistics for the test set ({len(dataset['test'])} samples)\n\n"
-)
+dataset_card_str += "\n\n"
+dataset_card_str += f"### Statistics for the out of distribution test set ({len(dataset['test_out_dist'])} samples)\n\n"
 
 # check for test_dataset.png and add to card
 if os.path.exists("test_dataset.png"):

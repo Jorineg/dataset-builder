@@ -176,10 +176,11 @@
     {
         "id": 13,
         "dataset": "jeggers/competition_math",
+        "subset": "numeric",
         "name": "MATH",
         "type": "free-text",
-        "prompt_template": "Solve the math problem. Answer with only the final result. Use a latex expression, if the result is a fraction, includes a root, etc. Write matrix entries as x/y and all other fractions as \\frac{{x}}{{y}}. For coefficients, do not include a multiplication symbol. For expressions with multiple variables, order the variables alphabetically. For polynomials, express them in decreasing degree order. \n\nProblem:\n{problem}",
-        "variations_for_prompt_template": 10,
+        "prompt_template": "Answer with a single number.\n{problem}",
+        "variations_for_prompt_template": 5,
         "out_col": "extracted_solution",
         "description": "very hard math problems",
         "result_type": {
@@ -441,9 +442,6 @@
         "type": "free-text",
         "prompt_template": "{input}",
         "out_col": "target",
-        "keep_columns": [
-            "original_dataset"
-        ],
         "description": "Harder questions from the Big Bench",
         "result_type": {
             "type": "string"
@@ -459,9 +457,6 @@
             "mc_sep": "\n",
             "add_mc_labels": true
         },
-        "keep_columns": [
-            "category"
-        ],
         "prompt_template": "{question}\n\n{formatted_mc_col}\n\nAnswer with the letter only.",
         "variations_for_prompt_template": 5,
         "out_col": "answer_index",
@@ -607,7 +602,9 @@
         "description": "Complete the sentence with the most likely completion",
         "result_type": {
             "type": "char"
-        }
+        },
+        "use_only": "test",
+        "load_max_samples": 500
     },
     {
         "id": 41,
@@ -764,6 +761,7 @@
         "name": "AIW",
         "type": "number",
         "prompt_template": "{question}\n\nAnswer with a number.",
+        "variations_for_prompt_template": 5,
         "out_col": "answer",
         "description": "Alice in the wonderland - how many brothers/cousins",
         "result_type": {
@@ -778,11 +776,25 @@
         "name": "AIW+",
         "type": "number",
         "prompt_template": "{question}\n\nAnswer with a number.",
+        "variations_for_prompt_template": 5,
         "out_col": "answer",
         "description": "Alice in the wonderland - how many brothers/cousins",
         "result_type": {
             "type": "integer"
         },
         "use_only": "test"
+    },
+    {
+        "id": 52,
+        "dataset": "qq8933/AIME_1983_2024",
+        "name": "AIME",
+        "type": "integer",
+        "prompt_template": "{Question}\n\nAnswer with a number.",
+        "variations_for_prompt_template": 5,
+        "out_col": "Answer",
+        "description": "American Invitational Mathematics Examination; hard math problems",
+        "result_type": {
+            "type": "integer"
+        }
     }
 ]
